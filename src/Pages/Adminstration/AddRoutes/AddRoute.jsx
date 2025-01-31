@@ -290,19 +290,19 @@ const AddRoute = () => {
                       />
                     </div>
                   )}
-                  <button type="button" className="btn btn-primary mb-3" onClick={fetchCurrentLocation}>
+                  <button type="button" className="btn btn-primary btn-sm mb-3 m-1" onClick={fetchCurrentLocation}>
                     Use Current Location
                   </button>
                   <button
                     type="button"
-                    className="btn btn-secondary mb-3"
+                    className="btn btn-secondary btn-sm mb-3 m-1"
                     onClick={clearLocation}
                   >
                     Clear Location
                   </button>
                   <div className="d-flex gap-2 justify-content-end">
-                    <button type="reset" className="btn btn-danger">Reset</button>
-                    <button type="submit" className="btn btn-success">Submit</button>
+                    <button type="reset" className="btn btn-danger btn-sm m-1">Reset</button>
+                    <button type="submit" className="btn btn-success btn-sm m-1">Submit</button>
                   </div>
                 </form>
               </div>

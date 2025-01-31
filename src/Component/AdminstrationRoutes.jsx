@@ -18,6 +18,7 @@ import SubAdmin from '../Pages/Adminstration/SubAdmin/SubAdmin';
 import Dashboard from '../Pages/Adminstration/Dashboard/Dashboard';
 import AdministratorUpdateVerifier from "../Pages/Adminstration/Verifier/AdministratorUpdateVerifier";
 import UpdateUser from "../Pages/Adminstration/AddVehicle/UpdateUser";
+import PreviewVerifier from "../Pages/Adminstration/Verifier/PreviewVerifier";
 
 const AdminstrationRoutes = () => {
     return (
@@ -32,6 +33,7 @@ const AdminstrationRoutes = () => {
                 <Route path="/administration/form-wizard" element={<FormWizard/>}/>
                 <Route path='/administration/verifier' element={<Verifier/>}/>
                 <Route path='/administration/add-verifier' element={<AddVerifier/>}/>
+                <Route path='/administration/preview-verifier' element={<PreviewVerifier/>}/>
                 <Route path='/administration/update-verifier' element={<AdministratorUpdateVerifier/>}/>
                 <Route path='/administration/users/update' element={<UpdateUser/>}/>
                 <Route path='/administration/zone' element={<Zone/>}/>

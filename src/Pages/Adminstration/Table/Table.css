@@ -1,5 +1,12 @@
 .custom-table .rdt_TableHead {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary-light);
-  }
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary-light);
+}
+
+.cPHygs{
+  background-color: #343a40 !important;
+  
+}
+
+

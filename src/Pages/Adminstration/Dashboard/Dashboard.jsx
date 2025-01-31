@@ -4,19 +4,24 @@ import Brandcrump from "../../../Component/Brandcrump";
 function Dashboard() {
   const cards = [
     { label: "Total E-Rickshaw", value: "20,000", icon: "fas fa-car", bgClass: "bg-cyan" },
-    { label: "QR Allowed", value: "15,000", icon: "fa-solid fa-award", bgClass: "bg-purple" },
-    { label: "Total Routes", value: "5,000", icon: "fluent fa-route", bgClass: "bg-info" },
-    { label: "Total Zone", value: "42,000", icon: "solar fa-globe", bgClass: "bg-success-main" },
-    { label: "Today Challan", value: "30,000", icon: "fa6-solid fa-file-invoice-dollar", bgClass: "bg-red" }
+    { label: "QR Allowed", value: "1,000", icon: "fa-solid fa-award", bgClass: "bg-purple" },
+    { label: "Total Routes", value: "2,00", icon: "fluent fa-route", bgClass: "bg-info" },
+    { label: "Total Zone", value: "6", icon: "solar fa-globe", bgClass: "bg-success-main" },
+    { label: "Today Challan", value: "9,00", icon: "fa6-solid fa-file-invoice-dollar", bgClass: "bg-red" }
   ];
 
   const orders = [
-    { id: "OR9842", item: "Call of Duty IV", status: "Shipped", badgeClass: "badge-success", popularity: "90,80,90,-70,61,-83,63" },
-    { id: "OR1848", item: "Samsung Smart TV", status: "Pending", badgeClass: "badge-warning", popularity: "90,80,-90,70,61,-83,68" },
-    { id: "OR7429", item: "iPhone 6 Plus", status: "Delivered", badgeClass: "badge-danger", popularity: "90,-80,90,70,-61,83,63" },
-    { id: "OR7532", item: "Samsung Smart TV", status: "Processing", badgeClass: "badge-info", popularity: "90,80,-90,70,-61,83,63" }
+    { id: "OR9842", item: "UP78 AX0256", status: "Paid", badgeClass: "badge-success",amount:"200Rs.", popularity: "01-01-2025" },
+    { id: "OR1848", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"500Rs.", popularity: "01-01-2025" },
+    { id: "OR7429", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"100Rs.", popularity: "01-01-2025" },
+    { id: "OR7532", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"500Rs.", popularity: "01-01-2025" }
   ];
-
+  const neworders = [
+    { id: "OR9842", item: "UP78 AX0256", status: "Paid", badgeClass: "badge-success",amount:"200Rs.", popularity: "01-01-2025" },
+    { id: "OR1848", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"500Rs.", popularity: "01-01-2025" },
+    { id: "OR7429", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"100Rs.", popularity: "01-01-2025" },
+    { id: "OR7532", item: "UP78 AX0256", status: "Pending", badgeClass: "badge-warning",amount:"500Rs.", popularity: "01-01-2025" }
+  ];
   return (
     <div className="content-wrapper">
       <div className="content">
@@ -68,12 +73,12 @@ function Dashboard() {
                           </tr>
                         </thead>
                         <tbody>
-                          {orders.map((order, index) => (
+                          {neworders.map((neworders, index) => (
                             <tr key={index}>
-                              <td><a href="pages/examples/invoice.html">{order.id}</a></td>
-                              <td>{order.item}</td>
-                              <td><span className={`badge ${order.badgeClass}`}>{order.status}</span></td>
-                              <td><div className="sparkbar" data-color="#00a65a" data-height="20">{order.popularity}</div></td>
+                              <td><a href="pages/examples/invoice.html">{neworders.id}</a></td>
+                              <td>{neworders.item}</td>
+                              <td><span className={`badge ${neworders.badgeClass}`}>{neworders.status}</span></td>
+                              <td><div className="sparkbar" data-color="#00a65a" data-height="20">{neworders.popularity}</div></td>
                             </tr>
                           ))}
                         </tbody>
@@ -104,10 +109,11 @@ function Dashboard() {
                       <table className="table m-0">
                         <thead>
                           <tr>
-                            <th>Order ID</th>
-                            <th>Item</th>
+                            <th>Challan Number</th>
+                            <th>Vehicle Number</th>
+                            <th>Amount</th>
                             <th>Status</th>
-                            <th>Popularity</th>
+                            <th>Date</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -115,6 +121,7 @@ function Dashboard() {
                             <tr key={index}>
                               <td><a href="pages/examples/invoice.html">{order.id}</a></td>
                               <td>{order.item}</td>
+                              <td>{order.amount}</td>
                               <td><span className={`badge ${order.badgeClass}`}>{order.status}</span></td>
                               <td><div className="sparkbar" data-color="#00a65a" data-height="20">{order.popularity}</div></td>
                             </tr>

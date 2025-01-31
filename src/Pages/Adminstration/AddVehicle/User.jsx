@@ -123,14 +123,14 @@ function Users() {
       sortable: false,
       style: { fontSize: '1rem', textAlign: 'center' },
     },
-    {
-      name: 'Rickshaw Photo',
-      selector: (row) => (
-        <img src={imageUrl + row.rickshaw_photo} className='img-fluid' style={{ height: '120px', width: '120px' }} />
-      ),
-      sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
-    },
+    // {
+    //   name: 'Rickshaw Photo',
+    //   selector: (row) => (
+    //     <img src={imageUrl + row.rickshaw_photo} className='img-fluid' style={{ height: '120px', width: '120px' }} />
+    //   ),
+    //   sortable: false,
+    //   style: { fontSize: '1rem', textAlign: 'center' },
+    // },
     {
       name: 'Rickshaw Details',
       selector: (row) => (
@@ -198,7 +198,7 @@ function Users() {
           <button type="button" className="btn btn-sm btn-info me-1" onClick={() => handleShow(row._id)}>
             View
           </button>
-          <br/>
+          {/* <br/> */}
           {row.e_ricksaw_route ? (
             <button type="button" className="btn btn-sm btn-success me-1" onClick={() => handleModalOpen(row._id)}>
               Update Route
@@ -209,10 +209,10 @@ function Users() {
             </button>
           )}
   <br/>
-<button type="button" className="btn btn-sm btn-warning me-1" onClick={() => handleUpdate(row._id,row)}>
+{/* <button type="button" className="btn btn-sm btn-warning me-1" onClick={() => handleUpdate(row._id,row)}>
             UpdateUser
           </button>
-         
+          */}
         </div>
       ),
       sortable: false,
@@ -381,9 +381,6 @@ function Users() {
             </div>
           </div>
           <div class="card-body">
-            <div class="dt-container dt-empty-footer">
-              <div class="table-responsive dt-layout-row dt-layout-table">
-                <div class="dt-layout-cell ">
                 <GetTable
                     data={users}
                     columns={columns}
@@ -690,7 +687,7 @@ function Users() {
                                   Select Route
                                 </label>
                                 <select
-                                  className="form-select"
+                                  className="custom-select rounded-0"
                                   name="e_ricksaw_route"
                                   onChange={handleInputChange}
                                   value={formData.e_ricksaw_route}
@@ -712,7 +709,7 @@ function Users() {
                                   Assign QR
                                 </label>
                                 <select
-                                  className="form-select"
+                                  className="custom-select rounded-0"
                                   name="qr_assing_statu"
                                   onChange={handleInputChange}
                                   value={formData.qr_assing_statu}
@@ -758,9 +755,7 @@ function Users() {
                       </div>
                     </div>
                   )}
-                </div>
-              </div>
-            </div>
+                
           </div>
         </div>
         </div>

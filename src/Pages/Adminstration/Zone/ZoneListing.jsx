@@ -122,23 +122,23 @@ const ZoneListing = () => {
     {
       name: 'Action',
       selector: (row) => (
-        <div>
+        <div className="flex-wrap gap-1">
           <button
-            className="btn btn-sm btn-info me-1"
+            className="btn btn-sm btn-info m-1"
             onClick={() => handleView(row._id)}
           >
             View
           </button>
-          <br/>
+          {/* <br/> */}
           <button
-            className="btn btn-primary btn-sm me-2"
+            className="btn btn-primary btn-sm m-1"
             onClick={() => handleEdit(row)}
           >
             Edit
           </button>
-          <br/>
+          {/* <br/> */}
           <button
-            className="btn btn-danger btn-sm"
+            className="btn btn-danger btn-sm m-1"
             onClick={() => {
               setZoneToDelete(row._id);
               setDeleteModalVisible(true);
@@ -152,7 +152,8 @@ const ZoneListing = () => {
       allowOverflow: true,
       button: true,
       sortable: false,
-      style: { fontSize: ".9rem" },
+      style: { fontSize: ".9rem",
+       },
     },
   ];
 
@@ -189,13 +190,13 @@ const ZoneListing = () => {
               ) : error ? (
                 <div className="alert alert-danger">{error}</div>
               ) : (
-                <div className="table-responsive">
+                
                   <GetTable
                     data={zones}
                     columns={columns}
                     title={'Zone Management'}
+                    
                   />
-                </div>
               )}
             </div>
           </div>

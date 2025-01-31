@@ -19,6 +19,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@react-google-maps/api": "^2.20.5",
     "axios": "^1.7.7",
+    "datatables.net-dt": "^2.2.1",
+    "datatables.net-react": "^1.0.0",
     "jquery": "^3.7.1",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",

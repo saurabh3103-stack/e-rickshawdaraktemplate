@@ -138,6 +138,7 @@ router.get('/user/:userId/:status', async (req, res) => {
     try {
       const { userId, status } = req.params;
       const user = await User.findOne({ _id: userId, status: 0 });
+      console.log(user);
       if (!user) {
         return res.status(404).json({ message: 'User not found or status does not match', status: 0 });
       }

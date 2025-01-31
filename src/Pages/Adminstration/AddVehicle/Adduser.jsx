@@ -170,13 +170,13 @@ function Adduser() {
       try {
         console.log(formData);
         const response = await axios.post(
-          'http://192.168.1.37:3002/api/users/add_user',
+          'http://localhost:3002/api/users/add_user',
           submissionData,
           config,
         );
         console.log('Success:', response.data);
         const userId = response.data.userId;
-        navigate(`/admin/preview/${userId}/0`);
+        navigate(`/administration/preview/${userId}/0`);
       } catch (error) {
         console.error('Error:', error);
       }

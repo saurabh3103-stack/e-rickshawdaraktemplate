@@ -8,7 +8,6 @@ import { toast, Toaster } from 'react-hot-toast';  // Importing toast
 const AdministratorUpdateVerifier = () => {
   const location = useLocation();
   const selectedData = location.state;
-
   const [formData, setFormData] = useState({
     zone_id: '',
     zone_head: '',
@@ -24,7 +23,7 @@ const AdministratorUpdateVerifier = () => {
     police_id: '',
     password: '',
     added_by: 'admin',
-    added_id: localStorage.getItem('user_id'),
+    // added_id: localStorage.getItem('user_id'),
   });
 
   const [zones, setZones] = useState([]);
@@ -48,7 +47,7 @@ const AdministratorUpdateVerifier = () => {
         police_id: selectedData.police_id || '',
         password: selectedData.password || '',
         added_by: 'admin',
-        added_id: localStorage.getItem('user_id'),
+        // added_id: localStorage.getItem('user_id'),
       });
     }
   }, [selectedData]);
@@ -118,106 +117,110 @@ const AdministratorUpdateVerifier = () => {
              style: {
                transition: 'transform 0.3s ease-in-out', // Smooth sliding animation
              }}}/>
-      <div className="dashboard-main-body">
+      <div class="content-wrapper">
         <Brandcrump
           pageName="Dashboard"
           title="Update Verifier"
           url="/dashboard"
           breadcrumb="update Verifier"
         />
-        <div className="row gx-3">
-          <div className="col-sm-12">
-            <div className="card mb-3">
-              <div className="card-header bg-primary text-white">
-                <h5 className="card-title text-light m-0">Update Verifier</h5>
-              </div>
-              {isVisible && (
-                <SuccessPopup
-                  isVisible={isVisible}
-                  onClose={handleClosePopup}
-                />
-              )}
-              <form onSubmit={handleSubmit}>
-                <div className="card-body">
-                  {error && <div className="alert alert-danger">{error}</div>}
-                  <div className="row gx-3">
-                    {[
-                      {
-                        label: 'Zone Name',
-                        id: 'zone_id',
-                        type: 'select',
-                        options: zones,
-                      },
-                      { label: 'Zone Head', id: 'zone_head', type: 'text' },
-                      { label: 'Name', id: 'name', type: 'text' },
-                      { label: 'Mobile', id: 'mobile_number', type: 'text' },
-                      { label: 'Email', id: 'email', type: 'email' },
-                      { label: 'Photo', id: 'photo', type: 'file' },
-                      { label: 'Designation', id: 'designation', type: 'text' },
-                      { label: 'Date of Birth', id: 'dob', type: 'date' },
-                      {
-                        label: 'Aadhaar Number',
-                        id: 'aadhaar_number',
-                        type: 'text',
-                      },
-                      { label: 'Address', id: 'address', type: 'text' },
-                      {
-                        label: 'Police Station Name',
-                        id: 'police_stationname',
-                        type: 'text',
-                      },
-                      { label: 'Police ID', id: 'police_id', type: 'text' },
-                      { label: 'Password', id: 'password', type: 'password' },
-                    ].map(({ label, id, type, options }) => (
-                      <div key={id} className="col-lg-6 col-sm-12">
-                        <div className="mb-3">
-                          <label className="form-label" htmlFor={id}>
-                            {label}
-                          </label>
-                          {type === 'select' ? (
-                            <select
-                              id={id}
-                              className="form-control"
-                              value={formData[id]}
-                              onChange={handleInputChange}
-                            >
-                              <option value="">Select {label}</option>
-                              {options &&
-                                options.map((option) => (
-                                  <option key={option._id} value={option._id}>
-                                    {option.zone_name}
-                                  </option>
-                                ))}
-                            </select>
-                          ) : (
-                            <input
-                              type={type}
-                              className="form-control"
-                              id={id}
-                              value={type === 'file' ? undefined : formData[id]}
-                              onChange={
-                                type === 'file'
-                                  ? handleFileChange
-                                  : handleInputChange
-                              }
-                              placeholder={`Enter ${label}`}
-                              accept={type === 'file' ? 'image/*' : undefined}
-                            />
-                          )}
-                        </div>
-                      </div>
-                    ))}
+          <section class="content-header">
+          <div class="container-fluid">
+            <div className="row gx-3">
+              <div className="col-sm-12">
+                <div className="card mb-3">
+                  <div className="card-header bg-primary text-white">
+                    <h5 className="card-title text-light m-0">Update Verifier</h5>
                   </div>
+                  {isVisible && (
+                    <SuccessPopup
+                      isVisible={isVisible}
+                      onClose={handleClosePopup}
+                    />
+                  )}
+                  <form onSubmit={handleSubmit}>
+                    <div className="card-body">
+                      {error && <div className="alert alert-danger">{error}</div>}
+                      <div className="row gx-3">
+                        {[
+                          {
+                            label: 'Zone Name',
+                            id: 'zone_id',
+                            type: 'select',
+                            options: zones,
+                          },
+                          { label: 'Zone Head', id: 'zone_head', type: 'text' },
+                          { label: 'Name', id: 'name', type: 'text' },
+                          { label: 'Mobile', id: 'mobile_number', type: 'text' },
+                          { label: 'Email', id: 'email', type: 'email' },
+                          { label: 'Photo', id: 'photo', type: 'file' },
+                          { label: 'Designation', id: 'designation', type: 'text' },
+                          { label: 'Date of Birth', id: 'dob', type: 'date' },
+                          {
+                            label: 'Aadhaar Number',
+                            id: 'aadhaar_number',
+                            type: 'text',
+                          },
+                          { label: 'Address', id: 'address', type: 'text' },
+                          {
+                            label: 'Police Station Name',
+                            id: 'police_stationname',
+                            type: 'text',
+                          },
+                          { label: 'Police ID', id: 'police_id', type: 'text' },
+                          { label: 'Password', id: 'password', type: 'password' },
+                        ].map(({ label, id, type, options }) => (
+                          <div key={id} className="col-lg-6 col-sm-12">
+                            <div className="mb-3">
+                              <label className="form-label" htmlFor={id}>
+                                {label}
+                              </label>
+                              {type === 'select' ? (
+                                <select
+                                  id={id}
+                                  className="form-control"
+                                  value={formData[id]}
+                                  onChange={handleInputChange}
+                                >
+                                  <option value="">Select {label}</option>
+                                  {options &&
+                                    options.map((option) => (
+                                      <option key={option._id} value={option._id}>
+                                        {option.zone_name}
+                                      </option>
+                                    ))}
+                                </select>
+                              ) : (
+                                <input
+                                  type={type}
+                                  className="form-control"
+                                  id={id}
+                                  value={type === 'file' ? undefined : formData[id]}
+                                  onChange={
+                                    type === 'file'
+                                      ? handleFileChange
+                                      : handleInputChange
+                                  }
+                                  placeholder={`Enter ${label}`}
+                                  accept={type === 'file' ? 'image/*' : undefined}
+                                />
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="card-footer">
+                      <button type="submit" className="btn btn-primary">
+                        Update Verifier
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div className="card-footer">
-                  <button type="submit" className="btn btn-primary">
-                    Update Verifier
-                  </button>
-                </div>
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
+            </div>
+        </section>
       </div>
     </>
   );

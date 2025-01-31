@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loader from '../../../Component/Loader';
 import DateDisplay from '../../../Component/DateDisplay';
 import Brandcrump from '../../../Component/Brandcrump';
-import GetTable from '../../SubAdmin/Table/GetTable';
+import GetTable from '../Table/GetTable';
 const Challan = () => {
   // State definitions
   const [loading, setLoading] = useState(true);
@@ -120,10 +120,8 @@ const Challan = () => {
                   <div className="alert alert-danger" role="alert">
                     {error}
                   </div>
-                ) : (
-                  <div className="table-responsive">
+                ) : (                  
                     <GetTable data={zones} columns={columns} title="Zones" />
-                  </div>
                 )}
               </div>
             </div>

@@ -8,7 +8,6 @@ import { Toaster, toast } from 'react-hot-toast';
 
 const AddVerifier = () => {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     zone_name: '',
     zone_head: '',
@@ -49,10 +48,8 @@ const AddVerifier = () => {
         );
       }
     };
-
     fetchZones();
   }, []);
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
@@ -102,10 +99,8 @@ const AddVerifier = () => {
       police_id: formData.police_id,
       password: formData.password,
     };
-
-    // Navigate with the data
     if (data) {
-      navigate(`/preview-verifier`, { state: { data } }); // Correctly pass the data inside the state object
+      navigate(`/administration/preview-verifier`, { state: { data } }); // Correctly pass the data inside the state object
     }
   };
 
@@ -137,11 +132,9 @@ const AddVerifier = () => {
                     onClose={handleClosePopup}
                   />
                 )}
-
                 <form onSubmit={handleSubmit}>
                   <div className="card-body">
                     {error && <div className="alert alert-danger">{error}</div>}
-
                     <div className="row gx-3">
                       <div className="col-lg-6 col-sm-12 col-md-6 col-12">
                         <div className="mb-3">

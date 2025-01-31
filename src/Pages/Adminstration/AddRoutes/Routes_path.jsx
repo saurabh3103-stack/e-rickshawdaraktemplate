@@ -106,8 +106,9 @@ const RoutesPath = () => {
       setLoading(true);
       const adminId = localStorage.getItem('user_id');
       console.log(adminId);
-      const response = await axios.get(`${API_URL}/admin/${adminId}`, { headers: { 'x-api-key': API_KEY } });
-      setRoutes(response.data.data);
+      const response = await axios.get(`${API_URL}`, { headers: { 'x-api-key': API_KEY } });
+      setRoutes(response.data);
+      console.log(routes);
     } catch (error) {
       handleError(error);
     } finally {
@@ -195,7 +196,46 @@ console.log(routes);
                       <p>Loading...</p>
                     ) : (
                       <div className="table-responsive">
-                        <GetTable data={routes} columns={columns} title={'E-Rickshaw Route List'} />
+                        <table className="table table-bordered table-hover dataTable dtr-inline">
+                          <thead>
+                            <tr>
+                              <td>S.No</td>
+                              <td>Start Point</td>
+                              <td>End Point</td>
+                              <td>Date</td>
+                              <td>Action</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            { routes.length>0?(
+                              routes.map((route,index)=>(
+                                <tr key={route.id||index}>
+                                  <td>{index+1}</td>
+                                  <td>{route.start_point}</td>
+                                  <td>{route.end_point}</td>
+                                  <td>
+                                    {new Date(route.createdAt).toLocaleDateString()}
+                                  </td>
+                                  <td>
+                                    <div>
+                                      <button type="button" className="btn btn-sm btn-info m-1" onClick={() => handleShow(route._id)}>View</button>
+                                      <button type="button" className="btn btn-sm btn-warning m-1" onClick={() => handleShowEdit(route._id)}>Edit</button>
+                                      <button type="button" className={`btn btn-sm m- ${route.status === 0 ? 'btn-success' : 'btn-danger'}`} onClick={() => toggleStatus(route._id, route.status)}>
+                                        {route.status === 0 ? 'Active' : 'Inactive'}
+                                      </button>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ))
+                            ):(
+                              <tr>
+                                <td colSpan="5" className="text-center">No data available</td>
+                              </tr>
+                            )
+                          }
+                          </tbody>
+                        </table>
+                        {/* <GetTable data={routes} columns={columns} title={'E-Rickshaw Route List'} /> */}
                       </div>
                     )}
                   </div>

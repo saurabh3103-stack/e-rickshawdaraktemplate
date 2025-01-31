@@ -14,8 +14,8 @@ function Preview() {
   const [loading, setLoading] = useState(true); // Initialize loading state
   const imageUrl = 'http://localhost:5173/backend/src/assets/upload/';
   const [isVisible, setisVisible] = useState(false);
-
   const status = 0;
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -33,18 +33,32 @@ function Preview() {
     };
     fetchUserData();
   }, []);
-
+  console.log(userId);
   const navigate = useNavigate();
   const handleClosePopup = () => {
     setIsSubmitted(false); // Close the popup
-    navigate('/vehicle'); // Navigate to the dashboard
+    navigate('/administration/users'); // Navigate to the dashboard
   };
   const updateStatus = async (e) => {
     e.preventDefault();
     try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'your_secret_key',  // Replace with the actual API key
+        },
+      };
+  
+      const data = {
+        status: 'inactive', // Sending status as 'inactive'
+      };
+  
       const response = await axios.put(
-        `http://localhost:3002/api/users/update_status/${userId}`,
+        `http://localhost:3002/api/users/update-status/${userId}`,
+        data, // Passing data in the request body
+        config
       );
+  
       setMessage(response.data.message);
       setError('');
       setIsSubmitted(true);
@@ -55,11 +69,13 @@ function Preview() {
       setMessage('');
     }
   };
+  
+  
 
   return (
     <>
-      <div className="dashboard-main-body">
-        <div>
+    <div class="content-wrapper">
+      <div>
           <div>
             <Brandcrump
               pageName="Dashboard"
@@ -68,10 +84,12 @@ function Preview() {
               breadcrumb="E-Rickshaw Details"
             />
             {userData ? (
+              <section class="content-header">
+                <div class="container-fluid">
               <div className="row gx-3">
                 <div className="col-sm-12">
                   <div className="card mb-3">
-                    <div className="card-header">
+                    <div className="card-header bg-primary text-white">
                       <h5 className="card-title">Owner Details</h5>
                     </div>
                     <form>
@@ -469,14 +487,14 @@ function Preview() {
                         <div className="d-flex gap-2 justify-content-end">
                           <button
                             type="button"
-                            className="btn btn-outline-secondary"
+                            className="btn btn-danger m-1"
                             onClick={() => navigate(-1)}
                           >
                             Back
                           </button>
                           <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-success m-1"
                             onClick={updateStatus}
                           >
                             Submit
@@ -487,6 +505,8 @@ function Preview() {
                   </div>
                 </div>
               </div>
+              </div>
+              </section>
             ) : (
               <p>No user data found</p>
             )}

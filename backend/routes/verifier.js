@@ -13,37 +13,29 @@ router.post('/register', upload.single('photo'), async (req, res) => {
     try {
         console.log("Request body:", req.body);
         console.log("File:", req.file);
-
         const { 
             password, name, dob, aadhaar_number, address, 
-            designation, zone_id, zone_head, mobile_number, 
+            designation, zone_name, zone_head, mobile_number, 
             email, added_id, added_by, police_stationname, police_id 
         } = req.body;
-
         // Define required fields
         const requiredFields = [
             'password', 'name', 'dob', 'aadhaar_number', 'address', 
             'designation', 'zone_id', 'zone_head', 'mobile_number', 
             'email', 'added_id', 'added_by'
         ];
-
         // Validate required fields
         for (const field of requiredFields) {
             if (!req.body[field]) {
                 return res.status(400).json({ message: `Field '${field}' is required` });
             }
         }
-
         // Check for existing user by Aadhaar number or email
         const existingUser = await Verifier.findOne({ $or: [{ aadhaar_number }, { email }] });
         if (existingUser) {
             return res.status(400).json({ message: 'User, Aadhaar number, or email already exists' });
         }
-
-        // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a new Verifier instance
         const verifier = new Verifier({
             password: hashedPassword,
             name,
@@ -51,7 +43,7 @@ router.post('/register', upload.single('photo'), async (req, res) => {
             aadhaar_number,
             address,
             designation,
-            zone_id: zone_id, // Assuming zone_name contains the ID
+            zone_id: zone_name, // Assuming zone_name contains the ID
             zone_head,
             mobile_number: mobile_number,
             email,

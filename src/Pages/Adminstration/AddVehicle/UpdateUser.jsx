@@ -86,6 +86,9 @@ const UpdateUser = () => {
   };
 
   return (
+    <div class="content-wrapper">
+  <section class="content-header">
+  <div class="container-fluid">
     <form  onSubmit={handlePreview} encType="multipart/form-data" className="container mt-4">
     {/* Owner Information */}
     <h3 className="mb-4">Owner Information</h3>
@@ -491,6 +494,9 @@ const UpdateUser = () => {
         </Modal.Footer>
       </Modal>
   </form>
+  </div>
+  </section>
+  </div>
   );
 };
 

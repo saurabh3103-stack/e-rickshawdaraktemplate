@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import SuccessPopup from '../../../Component/SuccessPopup';
-import { Toaster, toast } from 'react-hot-toast'; // Ensure you've imported react-hot-toast
+import { Toaster, toast } from 'react-hot-toast';
 
 const AddZone = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +16,20 @@ const AddZone = () => {
   // Handle form input changes
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+
+    setFormData((prev) => {
+      let updatedData = { ...prev, [id]: value };
+
+      // Auto-generate zone_id from zone_name
+      if (id === 'zone_name') {
+        updatedData.zone_id = value
+          .toLowerCase()
+          .trim()
+          .replace(/\s+/g, '_'); // Replace spaces with underscores
+      }
+
+      return updatedData;
+    });
   };
 
   // Handle form submission
@@ -36,21 +49,21 @@ const AddZone = () => {
           headers: {
             'x-api-key': 'your_secret_key', // Replace with your actual key
           },
-        },
+        }
       );
 
       if (response.status === 201) {
-        toast.success('Zone added successfully!'); // Success toast
-        setError(''); // Clear any error messages
+        toast.success('Zone added successfully!');
+        setError('');
         setIsSubmitted(true);
-        setIsVisible(true); // Show the success popup
+        setIsVisible(true);
         setFormData({ zone_id: '', zone_name: '', zone_region: '' }); // Reset form data
-      }else {
+      } else {
         toast.error('Failed to add zone.');
       }
     } catch (error) {
       console.error('API Error:', error);
-      toast.error('Failed to add zone. Please check your connection or API endpoint.'); // Error toast
+      toast.error('Failed to add zone. Please check your connection or API endpoint.');
     }
   };
 
@@ -62,14 +75,7 @@ const AddZone = () => {
 
   return (
     <>
-      <Toaster
-        position="top-right" // Position toast at the top-right
-        toastOptions={{
-          style: {
-            transition: 'transform 0.3s ease-in-out', // Smooth sliding animation
-          },
-        }}
-      />
+      <Toaster position="top-right" />
       <div className="row gx-3">
         <div className="col-sm-12">
           <div className="card mb-3">
@@ -93,23 +99,8 @@ const AddZone = () => {
                         className="form-control"
                         id="zone_id"
                         value={formData.zone_id}
-                        onChange={handleInputChange}
-                        placeholder="Enter Zone ID"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-3 col-sm-4 col-12">
-                    <div className="mb-3">
-                      <label className="form-label" htmlFor="zone_region">
-                        Zone Region
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="zone_region"
-                        value={formData.zone_region}
-                        onChange={handleInputChange}
-                        placeholder="Enter Zone Region"
+                        readOnly // Prevent manual editing
+                        placeholder="Auto-generated Zone ID"
                       />
                     </div>
                   </div>
@@ -128,13 +119,28 @@ const AddZone = () => {
                       />
                     </div>
                   </div>
+                  <div className="col-lg-3 col-sm-4 col-12">
+                    <div className="mb-3">
+                      <label className="form-label" htmlFor="zone_region">
+                        Zone Region
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="zone_region"
+                        value={formData.zone_region}
+                        onChange={handleInputChange}
+                        placeholder="Enter Zone Region"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="card-footer">
                 <div className="d-flex gap-2 justify-content-end">
                   <button
                     type="reset"
-                    className="btn btn-danger me-2"
+                    className="btn btn-danger me-2 m-1"
                     onClick={() =>
                       setFormData({
                         zone_id: '',
@@ -145,7 +151,7 @@ const AddZone = () => {
                   >
                     Reset
                   </button>
-                  <button type="submit" className="btn btn-success">
+                  <button type="submit" className="btn btn-success m-1" >
                     Submit
                   </button>
                 </div>

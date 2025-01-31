@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 function AdminstrationLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -41,13 +41,75 @@ function AdminstrationLogin() {
   
   return (
     <>
+    <div class="hold-transition login-page">
+    <div class="login-box">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <Link href="/" class="h2"><b>Administration</b> Login</Link>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Welcome back! please enter your detail
+      </p>
+
+      <form action="#" method="post">
+        <div class="input-group mb-3">
+          <input type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  id="email"
+                   class="form-control" placeholder="Email"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input  type={showPassword ? 'text' : 'password'} 
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    required
+                    id="password" class="form-control" placeholder="Password"/>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input  type="checkbox"
+                      value=""
+                      id="remeber"/>
+              <label for="remember">
+                Remember Me
+              </label>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit"
+                onClick={handleLogin} class="btn btn-primary btn-block">Sign In</button>
+          </div>
+        </div>
+      </form>    
+      <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      
+    </div>
+  </div>
+</div>
+</div>
       <section className="auth bg-base d-flex flex-wrap">
-        <div className="auth-left d-lg-block d-none">
+        {/* <div className="auth-left d-lg-block d-none">
           <div className="d-flex align-items-center flex-column h-100 justify-content-center">
             <img src={'../Update/images/auth/auth-img.png'} alt="" />
           </div>
         </div>
-        <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
+         */}
+        {/* <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
           <div className="max-w-464-px mx-auto w-100">
             <div>
               <a href="index.html" className="mb-40 max-w-290-px">
@@ -124,8 +186,9 @@ function AdminstrationLogin() {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
       </section>
+      
     </>
   );
 }
