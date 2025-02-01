@@ -83,9 +83,9 @@ function AdminstrationSidebar() {
                 </li>
                 <li className="nav-item">
                   <Link to="administration/route"                   
-                  className={`d-flex align-items-center gap-1  nav-link ${location.pathname === "/administration/route" ? "active" : ""}`}>
+                  className={` nav-link ${location.pathname === "/administration/route" ? "active" : ""}`}>
                     <i className="nav-icon fa-solid fa-route text-light"></i>
-                    <span>Routes</span>
+                    <p>Routes</p>
                   </Link>
                 </li>
                 <li className={`nav-item ${location.pathname.includes("/administration/verifier") ? "menu-open" : ""}`}>

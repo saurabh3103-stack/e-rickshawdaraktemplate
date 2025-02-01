@@ -7,6 +7,7 @@ import { Modal, Button, Tabs, Tab, Card, Image } from 'react-bootstrap';
 import './RouteMap.css';
 import GetTable from '../Table/GetTable';
 import { useNavigate } from 'react-router-dom';
+import RouteNameComponent from '../../../Component/RouteNameComponent';
 function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -115,13 +116,15 @@ function Users() {
       name: 'S.No',
       selector: (row, index) => index + 1, // Dynamically generates serial numbers
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center' ,width:"20px" },
     },
     {
       name: 'ID',
-      selector: (row) => row.e_rickshaw,
+      selector: (row) => (
+        <a href='javascript:void(0)' onClick={() => handleShow(row._id)}>{row.e_rickshaw}</a>
+        ),
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center' ,width:"50px" },
     },
     // {
     //   name: 'Rickshaw Photo',
@@ -154,11 +157,14 @@ function Users() {
         </div>
       ),
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center'},
     },
     {
       name: 'Route',
-      selector: (row) => row.e_ricksaw_route || 'No route assigned',
+      selector: (row) => 
+      (
+        <RouteNameComponent routeId={row.e_ricksaw_route}/>
+      ), 
       sortable: false,
       style: { fontSize: '1rem', textAlign: 'center' },
     },
@@ -166,13 +172,12 @@ function Users() {
       name: 'Qr Status',
       selector: (row) => row.qr_assing_statu,
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center',width:"50px" },
     },
     {
-      name: 'Action',
+      name: 'Status',
       selector: (row) => (
         <div>
-         
           {row.status === 0 ? (
             <button type="button" className="btn btn-sm btn-success mr-1" onClick={() => activeStatus(row._id)}>
               Active
@@ -194,31 +199,27 @@ function Users() {
     {
       name: 'Action',
       selector: (row) => (
-        <div>
-          <button type="button" className="btn btn-sm btn-info me-1" onClick={() => handleShow(row._id)}>
+        <div className="d-flex flex-wrap gap-2" style={{ minWidth: '180px' }}>
+          <button type="button" className="btn btn-sm btn-info mx-2" onClick={() => handleShow(row._id)}>
             View
           </button>
-          {/* <br/> */}
           {row.e_ricksaw_route ? (
-            <button type="button" className="btn btn-sm btn-success me-1" onClick={() => handleModalOpen(row._id)}>
+            <button type="button" className="btn btn-sm btn-success" onClick={() => handleModalOpen(row._id)}>
               Update Route
             </button>
           ) : (
-            <button type="button" className="btn btn-sm btn-warning me-1" onClick={() => handleModalOpen(row._id)}>
+            <button type="button" className="btn btn-sm btn-warning" onClick={() => handleModalOpen(row._id)}>
               Assign Route
             </button>
           )}
-  <br/>
-{/* <button type="button" className="btn btn-sm btn-warning me-1" onClick={() => handleUpdate(row._id,row)}>
-            UpdateUser
-          </button>
-          */}
+          
         </div>
       ),
       sortable: false,
       ignoreRowClick: true,
       allowOverflow: true,
       button: true,
+      width: '220px', // Adjust as needed
     },
   ];
 
@@ -281,8 +282,7 @@ function Users() {
     setShowModal(true); // Show modal
   };
 
-  const [routeData, setRouteData] = useState({}); // State to store route data for each route
-
+  
   // Function to fetch route details by routeId
   const getRouteId = async (routeId) => {
     if (routeId && !routeData[routeId]) {

@@ -150,10 +150,8 @@ const ZoneListing = () => {
       ),
       ignoreRowClick: true,
       allowOverflow: true,
-      button: true,
       sortable: false,
-      style: { fontSize: ".9rem",
-       },
+      style: { fontSize: ".9rem"},
     },
   ];
 

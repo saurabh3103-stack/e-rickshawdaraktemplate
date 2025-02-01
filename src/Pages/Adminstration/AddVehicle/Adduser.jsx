@@ -816,7 +816,7 @@ function Adduser() {
                     {currentStep > 1 && (
                       <button
                         type="button"
-                        className="btn btn-danger"
+                        className="btn btn-danger m-1"
                         onClick={prevStep}
                       >
                         Previous
@@ -825,7 +825,7 @@ function Adduser() {
                     {currentStep < 2 ? (
                       <button
                         type="button"
-                        className="btn btn-success"
+                        className="btn btn-success m-1"
                         onClick={nextStep}
                       >
                         Next
@@ -833,7 +833,7 @@ function Adduser() {
                     ) : (
                       <button
                         type="button"
-                        className="btn btn-success"
+                        className="btn btn-success m-1"
                         onClick={handleSubmit}
                       >
                         Preview

@@ -10,7 +10,6 @@ const AddVerifier = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     zone_name: '',
-    zone_head: '',
     name: '',
     mobile: '',
     email: '',
@@ -71,7 +70,6 @@ const AddVerifier = () => {
 
     if (
       !formData.zone_name ||
-      !formData.zone_head ||
       !formData.name ||
       !formData.mobile ||
       !formData.email ||
@@ -85,8 +83,7 @@ const AddVerifier = () => {
 
     // Create a plain object instead of FormData
     const data = {
-      zone_name: formData.zone_name,
-      zone_head: formData.zone_head,
+      zone_id: formData.zone_name,
       name: formData.name,
       mobile: formData.mobile,
       email: formData.email,
@@ -136,7 +133,7 @@ const AddVerifier = () => {
                   <div className="card-body">
                     {error && <div className="alert alert-danger">{error}</div>}
                     <div className="row gx-3">
-                      <div className="col-lg-6 col-sm-12 col-md-6 col-12">
+                    <div className="col-lg-6 col-sm-12 col-md-6 col-12">
                         <div className="mb-3">
                           <label className="form-label" htmlFor="zone_name">
                             Zone Name
@@ -156,24 +153,6 @@ const AddVerifier = () => {
                           </select>
                         </div>
                       </div>
-                      <div className="col-lg-6 col-sm-12 col-md-6 col-12">
-                        <div className="mb-3">
-                          <label className="form-label" htmlFor="zone_head">
-                            Zone Head
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="zone_head"
-                            value={formData.zone_head}
-                            onChange={handleInputChange}
-                            placeholder="Enter Zone Head"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row gx-3">
                       <div className="col-lg-6 col-sm-12 col-md-6 col-12">
                         <div className="mb-3">
                           <label className="form-label" htmlFor="name">

@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Table.css'; 
+import './Table.css'; // import the CSS file for custom styling
 
 const tableCustomStyles = {
   headRow: {
@@ -82,13 +82,15 @@ const GetTable = ({ data, columns, title }) => {
   return (
     <>
       <DataTable
+
 customStyles={tableCustomStyles}
         columns={columns}
         data={filteredData}
         pagination
         fixedHeader
-        className="border table table-border border-5 custom-table"  // Add custom class here
+        className="border border-5 custom-table"  // Add custom class here
         fixedHeaderScrollHeight="100%"
+       
         subHeader
         subHeaderComponent={
   <div className="row w-100"  style={{ 
@@ -115,6 +117,7 @@ customStyles={tableCustomStyles}
     </div>
   </div>
 }
+
       />
       <ToastContainer />
     </>

@@ -16,12 +16,7 @@ const PreviewVerifier = () => {
   const handleClosePopup = () => {
     setIsSubmitted(false); 
   };
-
-  {
-    console.log(data.photo);
-  }
   const [imageSrc, setImageSrc] = useState(null);
-
   useEffect(() => {
     if (
       data?.photo &&
@@ -95,19 +90,7 @@ const PreviewVerifier = () => {
                         type="text"
                         className="form-control"
                         id="zone_id"
-                        value={data.zone_name}
-                        disabled
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <label htmlFor="zone_head" className="form-label">
-                        Zone Head
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="zone_head"
-                        value={data.zone_head}
+                        value={data.zone_id}
                         disabled
                       />
                     </div>

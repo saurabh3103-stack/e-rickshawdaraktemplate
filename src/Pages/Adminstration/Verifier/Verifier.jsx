@@ -8,12 +8,14 @@ import GetTable from '../Table/GetTable';
 import { Navigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { Toaster, toast } from 'react-hot-toast';
+import ZoneComponent from '../../../Component/ZoneComponent';
 
 const Verifier = () => {
   // State definitions
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [zones, setZones] = useState([]);
+  
   const navigate = useNavigate();
 
   // Fetch data function
@@ -138,7 +140,9 @@ const Verifier = () => {
     },
     {
       name: 'Zone Name',
-      selector: (row) => row.zone_id,
+      selector: (row) =>(
+        <ZoneComponent zoneId={row.zone_id}/>
+      ),
       sortable: true,
       style: { fontSize: '.9rem' },
     },
@@ -187,39 +191,36 @@ const Verifier = () => {
       sortable: false,
       style: { fontSize: '.9rem' },
     },
-
     {
       name: 'Action',
       responsive: true,
-      selector: (row) => (
-        <div>
+      selector: (row) => (<>
           <button
             type="button"
-            className="btn btn-sm btn-info me-1"
+            className="btn btn-sm btn-info m-1"
             onClick={() => handleView(row._id)}
           >
             View
           </button>
-          <br/>
           <button
             type="button"
-            className="btn btn-sm btn-warning me-1"
+            className="btn btn-sm btn-warning m-1"
             onClick={() => handleEdit(row._id)}
           >
             Edit
           </button>
-          <br/>
           <button
-            className="btn btn-danger btn-sm"
+            className="btn btn-danger btn-sm m-1"
             onClick={() => openDeleteModal(row._id)}
           >
             Delete
           </button>
-        </div>
+          </>
       ),
       ignoreRowClick: true,
       allowOverflow: true,
-      button: true,
+      sortable: false,
+      style:{width:'220px'}
     },
   ];
   const handleEdit = (id) => {
@@ -228,7 +229,6 @@ const Verifier = () => {
     console.log(selectedData);
     navigate('/administration/update-verifier', { state: selectedData });
   };
-
   return (
     <>
     <div class="content-wrapper">

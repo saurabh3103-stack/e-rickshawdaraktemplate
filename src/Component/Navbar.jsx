@@ -24,12 +24,9 @@ function Navbar() {
     <nav className="main-header navbar navbar-expand navbar-dark">
       {/* Left navbar links */}
       <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link className="nav-link" to="#">
-            {/* <i className="fas fa-bars"></i> */}
-            <img src='https://img.icons8.com/?size=20&id=8113&format=png&color=ffffff'/>
-          </Link>
-        </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
         <li className="nav-item d-none d-sm-inline-block">
           <Link href="index3.html" className="nav-link">Home</Link>
         </li>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import GetTable from '../Table/GetTable';
 import Brandcrump from '../../../Component/Brandcrump';
+import ZoneComponent from '../../../Component/ZoneComponent';
 const SubAdmin = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -15,7 +16,9 @@ const SubAdmin = () => {
     },
     {
       name: 'Zone',
-      selector: (row) => row.zone_name || row.zone_name, // Handles both `starting_point` and `start_point` keys
+      selector: (row) => (
+        <ZoneComponent zoneId={row.zone_name}/>
+      ), // Handles both `starting_point` and `start_point` keys
       sortable: false,
       style: { fontSize: '.9rem' },
     },
@@ -28,6 +31,12 @@ const SubAdmin = () => {
     {
       name: 'Email',
       selector: (row) => row.email,
+      sortable: true,
+      style: { fontSize: '.9rem' },
+    },
+    {
+      name: 'Date',
+      selector: (row) => new Date(row.createdAt).toLocaleDateString(), // Formats the created date
       sortable: true,
       style: { fontSize: '.9rem' },
     },
@@ -46,46 +55,24 @@ const SubAdmin = () => {
       style: { fontSize: '.9rem' },
     },
     {
-      name: 'Date',
-      selector: (row) => new Date(row.createdAt).toLocaleDateString(), // Formats the created date
-      sortable: true,
-      style: { fontSize: '.9rem' },
-    },
-    {
       name: 'Action',
       selector: (row) => (
         <div>
           <button
             type="button"
-            className="btn btn-sm btn-info me-1"
+            className="btn btn-sm btn-info m-1"
             onClick={() => handleShow(row._id)}
           >
             View
           </button>
           <button
             type="button"
-            className="btn btn-sm btn-warning me-1"
+            className="btn btn-sm btn-warning m-1"
             onClick={() => handleShowEdit(row._id)}
           >
             Edit
           </button>
-          {row.status === 0 ? (
-            <button
-              type="button"
-              className="btn btn-sm btn-success mr-1"
-              onClick={() => activeStatus(row._id)}
-            >
-              Active
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="btn btn-sm btn-danger"
-              onClick={() => updateStatus(row._id)}
-            >
-              Inactive
-            </button>
-          )}
+          
         </div>
       ),
       sortable: false,
@@ -135,13 +122,12 @@ const SubAdmin = () => {
                 {loading ? (
                   <p>Loading...</p>
                 ) : (
-                  <div className="table-responsive">
+                  
                     <GetTable
                       data={admin}
                       columns={columns}
                       title={'Sub Admin'}
                     ></GetTable>
-                  </div>
                 )}
               </div>
             </div>

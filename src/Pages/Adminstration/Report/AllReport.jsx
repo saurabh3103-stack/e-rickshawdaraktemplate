@@ -7,8 +7,6 @@ import GetTable from '../Table/GetTable';
 
 const AllReport = () => {
   // State definitions
-
-
   const columns = [
       {
         name: 'S.No',
@@ -57,18 +55,7 @@ const AllReport = () => {
         selector: (row) => row.status || 'N/A',
         sortable: false,
         style: { textAlign: 'center' },
-      },
-      {
-        name: 'Action',
-        selector: (row) => (
-          <div>
-            <button className="btn btn-primary btn-sm me-2">Edit</button>
-            <button className="btn btn-danger btn-sm">Delete</button>
-          </div>
-        ),
-        sortable: false,
-        style: { textAlign: 'center' },
-      },
+      }
     ];
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
