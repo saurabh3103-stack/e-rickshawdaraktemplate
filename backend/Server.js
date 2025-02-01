@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+
 
 require('dotenv').config();
 const app = express();
@@ -9,17 +11,19 @@ app.use(cors()); // Allow requests from any origin
 console.log("backend working successfully")
 app.use(bodyParser.json());
 app.use(express.json());
+const router = express.Router();
+
 const port = 3002;
 const administration = require('./routes/administration');
 const userRoutes= require('./routes/user')
 const userPath = require('./routes/routes');
 const appUser =  require('./routes/app_user');
 const zone = require('./routes/zone');
-const zonehead = require('./routes/zonehead');
 const verifier = require('./routes/verifier');
 const admin = require('./routes/admin');
 const subAdmin = require('./routes/subAdmin');
 const loginUser = require('./routes/loginUser');
+const  QRCode = require("./routes/qrController");
 // Vehicle Reg
 
 const ownerRoutes = require('./routes/owner');
@@ -42,7 +46,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/userPath', userPath);
 app.use('/api/appUser',appUser);
 app.use('/api/zones', zone);
-app.use('/api/zonehead/',zonehead);
 app.use('/api/verifier',verifier);
 app.use('/api/admin',admin);
 app.use('/api/sub-admin',subAdmin);
@@ -51,12 +54,15 @@ app.use('/api/owner', ownerRoutes);
 app.use('/api/vehicle', vehicleRoutes);
 app.use('/api/vehicle-document', vehicleDocumentRoutes);
 app.use('/api/driver', driverRoutes);
+app.use("/api/qr_code", QRCode);
+// router.get("/api/get_qr/:uniqueId", getQR);
 
 // Start Android app Routes
 
 app.use('/api/otp',loginUser);
 
 // End Android app Routes
+app.use('/qrcodes', express.static(path.join(__dirname, 'qrcodes')));
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

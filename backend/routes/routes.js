@@ -11,7 +11,7 @@ router.post('/add_routes', async (req, res) => {
         const routesPath = new RoutesPath({ 
             start_point, 
             end_point, 
-            admin_id, 
+            admin_id:admin_id|| null, 
             start_lat: start_lat || null, 
             start_lng: start_lng || null, 
             end_lat: end_lat || null, 
@@ -53,7 +53,7 @@ router.get('/admin/:admin_id', apiKeyAuth, async (req, res) => {
 router.get('/:id', apiKeyAuth, async (req, res) => {
     const { id } = req.params;
     try {
-        const route = await RoutesPath.findById(id).populate('admin_id'); // Populate admin details
+        const route = await RoutesPath.findById(id); // Populate admin details
         if (!route) {
             return res.status(404).json({ message: 'Route not found' });
         }

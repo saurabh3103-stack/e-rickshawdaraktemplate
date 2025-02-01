@@ -24,7 +24,6 @@ const VerifierSchema = new Schema({
     },
     zone_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Zone', 
         default: null
     },
     zone_head:{

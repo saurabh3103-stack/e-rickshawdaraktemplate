@@ -34,7 +34,8 @@ const routesSchema = new mongoose.Schema({
     admin_id: {
         type: mongoose.Schema.Types.ObjectId, // Reference to Admin collection
         ref: 'Admin',
-        required: true, // Ensure admin_id is always provided
+        // required: true, // Ensure admin_id is always provided
+        default:null
     },
     createdAt: {
         type: Date,

@@ -35,7 +35,6 @@ router.post('/add_user', upload.fields([
   try {
       console.log('Request Body:', req.body);
       console.log('Files:', req.files);
-
       const {
           owner_name, email, phone_owner, addhar_number, owner_dl,
           e_rickshaw, chassis, fitness, address_line_f, address_line_t,
@@ -50,7 +49,6 @@ router.post('/add_user', upload.fields([
       if (existingUser) {
           return res.status(400).json({ message: 'User already registered', status: 2 });
       }
-
       // Create a new user instance with the provided and uploaded data
       const user = new User({
           owner_name,

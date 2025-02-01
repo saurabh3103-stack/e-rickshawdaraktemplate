@@ -1,6 +1,6 @@
 const express = require('express');
 const Verifier = require('../model/verifier');
-const auth = require('../middleware/apiKeyAuth');
+const apiKeyAuth = require('../middleware/apiKeyAuth');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
@@ -9,64 +9,64 @@ const multer = require("multer");
 // Configure multer
 const upload = multer(); // Configure multer as needed
 
-router.post('/register', upload.single('photo'), async (req, res) => {
-    try {
-        console.log("Request body:", req.body);
-        console.log("File:", req.file);
-        const { 
-            password, name, dob, aadhaar_number, address, 
-            designation, zone_name, zone_head, mobile_number, 
-            email, added_id, added_by, police_stationname, police_id 
-        } = req.body;
-        // Define required fields
-        const requiredFields = [
-            'password', 'name', 'dob', 'aadhaar_number', 'address', 
-            'designation', 'zone_id', 'zone_head', 'mobile_number', 
-            'email', 'added_id', 'added_by'
-        ];
-        // Validate required fields
-        for (const field of requiredFields) {
-            if (!req.body[field]) {
-                return res.status(400).json({ message: `Field '${field}' is required` });
+    router.post('/register',apiKeyAuth, upload.single('photo'), async (req, res) => {
+        try {
+            console.log("Request body:", req.body);
+            console.log("File:", req.file);
+            const { 
+                password, name, dob, aadhaar_number, address, 
+                designation, zone_id, zone_head, mobile, 
+                email, added_id, added_by, police_name, police_id 
+            } = req.body;
+            // Define required fields
+            const requiredFields = [
+                'password', 'name', 'dob', 'aadhaar_number', 'address', 
+                'designation', 'zone_id', 'mobile', 
+                'email',
+            ];
+            // Validate required fields
+            for (const field of requiredFields) {
+                if (!req.body[field]) {
+                    return res.status(400).json({ message: `Field '${field}' is required` });
+                }
             }
-        }
-        // Check for existing user by Aadhaar number or email
-        const existingUser = await Verifier.findOne({ $or: [{ aadhaar_number }, { email }] });
-        if (existingUser) {
-            return res.status(400).json({ message: 'User, Aadhaar number, or email already exists' });
-        }
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const verifier = new Verifier({
-            password: hashedPassword,
-            name,
-            dob,
-            aadhaar_number,
-            address,
-            designation,
-            zone_id: zone_name, // Assuming zone_name contains the ID
-            zone_head,
-            mobile_number: mobile_number,
-            email,
-            photo: req.file ? req.file.buffer : null, // Save photo as buffer or handle it differently
-            added_id,
-            police_stationname,
-            police_id,
-            added_by,
-        });
+            // Check for existing user by Aadhaar number or email
+            const existingUser = await Verifier.findOne({ $or: [{ aadhaar_number }, { email }] });
+            if (existingUser) {
+                return res.status(400).json({ message: 'User, Aadhaar number, or email already exists' });
+            }
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const verifier = new Verifier({
+                password: hashedPassword,
+                name,
+                dob,
+                aadhaar_number,
+                address,
+                designation,
+                zone_id: zone_id, 
+                zone_head,
+                mobile_number: mobile,
+                email,
+                photo: req.file ? req.file.buffer : null, 
+                added_id,
+                police_stationname:police_name,
+                police_id,
+                added_by,
+            });
 
-        // Save the verifier
-        await verifier.save();
+            // Save the verifier
+            await verifier.save();
 
-        // Respond with success
-        res.status(201).json({ message: 'Verifier registered successfully', created_at: verifier.createdAt });
-    } catch (error) {
-        console.error("Error:", error);
-        res.status(500).json({ message: 'Server error', error });
-    }
-});
+            // Respond with success
+            res.status(201).json({ message: 'Verifier registered successfully', created_at: verifier.createdAt });
+        } catch (error) {
+            console.error("Error:", error);
+            res.status(500).json({ message: 'Server error', error });
+        }
+    });
 
 // Verifier Login
-router.post('/login', async (req, res) => {
+router.post('/login',apiKeyAuth, async (req, res) => {
     const { email, password } = req.body;
     try {
         const verifier = await Verifier.findOne({ email });
@@ -85,7 +85,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Get Verifiers List
-router.get('/', auth, async (req, res) => {
+router.get('/', apiKeyAuth, async (req, res) => {
     try {
         const verifiers = await Verifier.find(); // Fetch all verifiers
         if (!verifiers || verifiers.length === 0) {
@@ -99,7 +99,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Get Verifier Profile
-router.get('/profile/:user_id', auth, async (req, res) => {
+router.get('/profile/:user_id', apiKeyAuth, async (req, res) => {
     try {
         const { user_id } = req.params;
 
@@ -116,7 +116,7 @@ router.get('/profile/:user_id', auth, async (req, res) => {
     }
 });
 
-router.put('/update/:id', auth, upload.single('photo'), async (req, res) => {
+router.put('/update/:id', apiKeyAuth, upload.single('photo'), async (req, res) => {
     try {
         const { id } = req.params;
         const updateData = req.body;
@@ -145,7 +145,7 @@ router.put('/update/:id', auth, upload.single('photo'), async (req, res) => {
     }
 });
 
-router.delete('/delete/:id', auth, async (req, res) => {
+router.delete('/delete/:id', apiKeyAuth, async (req, res) => {
     try {
         const verifier = await Verifier.findByIdAndDelete(req.params.id);
         if (!verifier) {
@@ -158,7 +158,7 @@ router.delete('/delete/:id', auth, async (req, res) => {
 });
 
 
-router.put('/update-status/:id', auth, async (req, res) => {
+router.put('/update-status/:id', apiKeyAuth, async (req, res) => {
     try {
         const { status } = req.body; 
         if (!status || !['active', 'inactive'].includes(status)) {
@@ -176,7 +176,7 @@ router.put('/update-status/:id', auth, async (req, res) => {
     }
 });
 
-router.get('/by-admin/:admin_id', auth, async (req, res) => {
+router.get('/by-admin/:admin_id', apiKeyAuth, async (req, res) => {
     try {
         const { admin_id } = req.params;
 
