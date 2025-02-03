@@ -9,6 +9,36 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Table.css'; // import the CSS file for custom styling
 
+const tableCustomStyles = {
+  headRow: {
+    style: {
+      color: 'white',
+      backgroundColor: '#343a40',
+      borderColor: '#6c757d', // Border color for table header
+      borderWidth: '3px',  // Ensure border width is visible
+      borderStyle: 'solid',
+      // Set border style to solid
+    },
+  },
+  rows: {
+    style: {
+      color: 'white',
+      backgroundColor: '#343a40',
+      borderColor: '#6c757d', // Border color for table rows
+      borderWidth: '1px', // Set border width for rows
+      borderStyle: 'solid',  // Set border style for rows
+    },
+    stripedStyle: {
+      color: '#bbc8ca',
+      backgroundColor: '#343a40',
+      borderColor: '#6c757d', // Border color for striped rows
+      borderWidth: '1px', // Border width for striped rows
+      borderStyle: 'solid', // Border style for striped rows
+    }
+  }
+};
+
+
 const GetTable = ({ data, columns, title }) => {
   const [searchedData, setSearchedData] = useState("");
 
@@ -52,31 +82,41 @@ const GetTable = ({ data, columns, title }) => {
   return (
     <>
       <DataTable
+
+customStyles={tableCustomStyles}
         columns={columns}
         data={filteredData}
         pagination
         fixedHeader
-        className="border border-1 custom-table"  // Add custom class here
+        className="border border-5 custom-table"  // Add custom class here
         fixedHeaderScrollHeight="100%"
-        highlightOnHover
+       
         subHeader
         subHeaderComponent={
-          <div className="row w-100">
-            <div className='col-md-9 col-lg-9 col-sm-12 col-12'>
-              <CSVLink data={csvData} filename={`${title}.csv`} className="btn btn-info btn-sm ml-2 m-1">
-                CSV
-              </CSVLink>
-              <button className="btn btn-primary btn-sm ml-2 m-1" onClick={printToPDF}>PDF</button>
-              <button className="btn btn-success btn-sm ml-2 m-1" onClick={exportToExcel}>Excel</button>
-              <CopyToClipboard text={JSON.stringify(filteredData, null, 2)} onCopy={notify}>
-                <button className="btn btn-warning btn-sm ml-2 m-1">Copy</button>
-              </CopyToClipboard>
-            </div>
-            <div className='col-md-3 col-lg-3 col-sm-12 col-12'>
-              <input type="text" placeholder="Search here" className="form-control" value={searchedData} onChange={(e) => setSearchedData(e.target.value)} />
-            </div>
-          </div>
-        }
+  <div className="row w-100"  style={{ 
+    backgroundColor: '#343a40', 
+    color: 'white', 
+    padding: '10px', 
+    borderRadius: '5px', 
+    border: '1px solid #6c757d' 
+  }}>
+    <div className='col-md-9 col-lg-9 col-sm-12 col-12'>
+      <div style={{ float: 'inline-start' }}>
+        <CSVLink data={csvData} filename={`${title}.csv`} className="btn btn-info btn-sm ml-2 m-1">
+          CSV
+        </CSVLink>
+        <button className="btn btn-primary btn-sm ml-2 m-1" onClick={printToPDF}>PDF</button>
+        <button className="btn btn-success btn-sm ml-2 m-1" onClick={exportToExcel}>Excel</button>
+        <CopyToClipboard text={JSON.stringify(filteredData, null, 2)} onCopy={notify}>
+          <button className="btn btn-warning btn-sm ml-2 m-1">Copy</button>
+        </CopyToClipboard>
+      </div>
+    </div>
+    <div className='col-md-3 col-lg-3 col-sm-12 col-12'>
+      <input type="text" placeholder="Search here" className="form-control" value={searchedData} onChange={(e) => setSearchedData(e.target.value)} />
+    </div>
+  </div>
+}
       />
       <ToastContainer />
     </>

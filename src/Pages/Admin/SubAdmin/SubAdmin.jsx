@@ -5,7 +5,9 @@ import SubAdminList from "./SubAdminList";
 const SubAdmin = () => {
     return(
         <>
-            <div class="dashboard-main-body">
+        <div className="content-wrapper">
+            <div className="content">
+                <div className="container-fluid">
                 <Brandcrump
                     pageName="Dashboard" 
                     title="Sub Admin" 
@@ -14,6 +16,8 @@ const SubAdmin = () => {
                 />
                 <AddSubAdmin/>
                 <SubAdminList/>
+            </div>
+            </div>
             </div>
         </>
     );  

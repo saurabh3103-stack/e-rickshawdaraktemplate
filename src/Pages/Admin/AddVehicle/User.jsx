@@ -5,8 +5,9 @@ import Loader from '../../../Component/Loader'; // Assuming you have a Loader co
 import Brandcrump from '../../../Component/Brandcrump';
 import { Modal, Button, Tabs, Tab, Card, Image } from 'react-bootstrap';
 import './RouteMap.css';
-import GetTable from '../../SubAdmin/Table/GetTable';
+import GetTable from '../Table/GetTable';
 import { toast, ToastContainer } from 'react-toastify';
+import RouteNameComponent from '../../../Component/RouteNameComponent';
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -53,22 +54,24 @@ function Users() {
       name: 'S.No',
       selector: (row, index) => index + 1, // Dynamically generates serial numbers
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center' ,width:"20px" },
     },
     {
       name: 'ID',
-      selector: (row) => row.e_rickshaw,
-      sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
-    },
-    {
-      name: 'Rickshaw Photo',
       selector: (row) => (
-        <img src={imageUrl + row.rickshaw_photo} className='img-fluid' style={{ height: '120px', width: '120px' }} />
-      ),
+        <a href='javascript:void(0)' onClick={() => handleShow(row._id)}>{row.e_rickshaw}</a>
+        ),
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center' ,width:"50px" },
     },
+    // {
+    //   name: 'Rickshaw Photo',
+    //   selector: (row) => (
+    //     <img src={imageUrl + row.rickshaw_photo} className='img-fluid' style={{ height: '120px', width: '120px' }} />
+    //   ),
+    //   sortable: false,
+    //   style: { fontSize: '1rem', textAlign: 'center' },
+    // },
     {
       name: 'Rickshaw Details',
       selector: (row) => (
@@ -92,11 +95,14 @@ function Users() {
         </div>
       ),
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center'},
     },
     {
       name: 'Route',
-      selector: (row) => row.e_ricksaw_route || 'No route assigned',
+      selector: (row) => 
+      (
+        <RouteNameComponent routeId={row.e_ricksaw_route}/>
+      ), 
       sortable: false,
       style: { fontSize: '1rem', textAlign: 'center' },
     },
@@ -104,25 +110,18 @@ function Users() {
       name: 'Qr Status',
       selector: (row) => row.qr_assing_statu,
       sortable: false,
-      style: { fontSize: '1rem', textAlign: 'center' },
+      style: { fontSize: '1rem', textAlign: 'center',width:"50px" },
     },
     {
-      name: 'Action',
+      name: 'Status',
       selector: (row) => (
         <div>
-          <button type="button" className="btn btn-sm btn-info me-1" onClick={() => handleShow(row._id)}>
-            View
-          </button>
-          {row.e_ricksaw_route ? (
-            <button type="button" className="btn btn-sm btn-success me-1" onClick={() => handleModalOpen(row._id)}>
-              Update Route
+          {row.status === 0 ? (
+            <button type="button" className="btn btn-sm btn-success mr-1" onClick={() => activeStatus(row._id)}>
+              Active
             </button>
           ) : (
-            <button type="button" className="btn btn-sm btn-warning me-1" onClick={() => handleModalOpen(row._id)}>
-              Assign Route
-            </button>
-          )}
- <button
+            <button
           className={`btn btn-sm ${
             row.status === "active" ? "btn-success" : "btn-danger"
           }`}
@@ -130,12 +129,35 @@ function Users() {
         >
           {row.status}
         </button>
+          )}
+        </div>
+      ),
+     
+    },
+    {
+      name: 'Action',
+      selector: (row) => (
+        <div className="d-flex flex-wrap gap-2" style={{ minWidth: '180px' }}>
+          <button type="button" className="btn btn-sm btn-info mx-2" onClick={() => handleShow(row._id)}>
+            View
+          </button>
+          {row.e_ricksaw_route ? (
+            <button type="button" className="btn btn-sm btn-success" onClick={() => handleModalOpen(row._id)}>
+              Update Route
+            </button>
+          ) : (
+            <button type="button" className="btn btn-sm btn-warning" onClick={() => handleModalOpen(row._id)}>
+              Assign Route
+            </button>
+          )}
+          
         </div>
       ),
       sortable: false,
       ignoreRowClick: true,
       allowOverflow: true,
       button: true,
+      width: '220px', // Adjust as needed
     },
   ];
 
@@ -275,8 +297,10 @@ function Users() {
   if (error) return <p>Error: {error}</p>;
   return (
     <>
-      <div class="dashboard-main-body">
-        <Brandcrump
+<div className="content-wrapper">
+      <div className="content">
+        <div className="container-fluid">
+          <Brandcrump
           pageName="Dashboard"
           title="Vehicle"
           url="/dashboard"
@@ -297,21 +321,18 @@ function Users() {
                 </h5>
               </div>
               <div class="col-6">
-                <Link to={'/admin/add_user'} class="btn btn-success float-end">
+                <Link to={'/admin/add_user'} class="btn btn-success" style={{float:'inline-end'}}>
                   Add Vehicle
                 </Link>
               </div>
             </div>
           </div>
           <div class="card-body">
-            <div class="dt-container dt-empty-footer">
-              <div class="table-responsive dt-layout-row dt-layout-table">
-                <div class="dt-layout-cell ">
                 <GetTable
-  data={users}
-  columns={columns}
-  title="E-Rickshaw Users"
-/>
+                      data={users}
+                      columns={columns}
+                      title="E-Rickshaw Users"
+                    />
                   <Modal show={show} onHide={handleClose} size="lg">
                     <Modal.Header closeButton className="bg-info text-light">
                       <Modal.Title className="text-center fade-in">
@@ -681,11 +702,10 @@ function Users() {
                       </div>
                     </div>
                   )}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
       <ToastContainer></ToastContainer>
     </>

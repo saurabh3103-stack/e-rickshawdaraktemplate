@@ -101,7 +101,9 @@ const AllReport = () => {
   
   return (
     <>
-      <div className="dashboard-main-body">
+    <div className="content-wrapper">
+      <div className="content">
+        <div className="container-fluid">     
         <Brandcrump
           pageName="Dashboard"
           title="All Report"
@@ -130,6 +132,8 @@ const AllReport = () => {
             </div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </>
   );

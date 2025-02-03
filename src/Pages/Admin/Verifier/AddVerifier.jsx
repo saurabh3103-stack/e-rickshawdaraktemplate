@@ -116,14 +116,16 @@ const AddVerifier = () => {
 
   return (
     <>
-      <div className="dashboard-main-body">
-        <Brandcrump
-          pageName="Dashboard"
-          title="Add Verifier"
-          url="/dashboard"
-          breadcrumb="Add Verifier"
-        />
-        <div className="row gx-3">
+      <div className="content-wrapper">
+        <div className="content">
+          <div className="container-fluid">
+          <Brandcrump
+            pageName="Dashboard"
+            title="Add Verifier"
+            url="/dashboard"
+            breadcrumb="Add Verifier"
+          />
+          <div className="row gx-3">
           <div className="col-sm-12">
             <div className="card mb-3">
               <div className="card-header bg-primary text-white">
@@ -356,7 +358,9 @@ const AddVerifier = () => {
           </div>
         </div>
       </div>
-
+      </div>
+      </div>
+        
        <Toaster  position="top-right"
             toastOptions={{
               style: {

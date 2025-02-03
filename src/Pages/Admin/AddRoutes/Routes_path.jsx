@@ -173,7 +173,9 @@ const RoutesPath = () => {
          style: {
            transition: 'transform 0.3s ease-in-out', // Smooth sliding animation
          }}}/>
-      <div className="dashboard-main-body">
+        <div className="content-wrapper">
+          <div className="content">
+            <div className="container-fluid">
         <Brandcrump pageName="Dashboard" title="E-Rickshaw Route" url="/dashboard" breadcrumb="E-Rickshaw Route" />
         <div className="row gx-3">
           <div className="col-sm-12">
@@ -271,6 +273,8 @@ const RoutesPath = () => {
             <Button onClick={() => handleModalToggle('view')}>Close</Button>
           </Modal.Footer>
         </Modal>
+      </div>
+      </div>
       </div>
     </>
   );

@@ -105,8 +105,10 @@ function Adduser() {
   };
 
   return (
-    <div className="dashboard-main-body">
-      <Brandcrump pageName="Dashboard" title="E-Rickshaw Registration" url="/dashboard" breadcrumb="E-Rickshaw Registration" />
+<div className="content-wrapper">
+      <div className="content">
+        <div className="container-fluid">     
+           <Brandcrump pageName="Dashboard" title="E-Rickshaw Registration" url="/dashboard" breadcrumb="E-Rickshaw Registration" />
       <div className="row gx-3">
         <div className="col-sm-12">
           <div className="card mb-3">
@@ -616,6 +618,8 @@ function Adduser() {
             </form>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   );

@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import '../../public/Update/css/remixicon.css';
 
 function AdminstrationSidebar() {
+  const handleLogout = () => {
+    localStorage.removeItem('session');
+    localStorage.removeItem('user_type');
+    localStorage.removeItem('user_email');
+    navigate('/login');
+  };
 
   return (
     <>
@@ -170,6 +176,17 @@ function AdminstrationSidebar() {
                     <i className="nav-icon far fa-user text-light"></i>
                     <p>Sub Admin</p>
                   </Link>
+                </li>
+                <li className="nav-item">
+                <Link
+                      className="nav-link"
+                        onClick={handleLogout}
+                        href="javascript:void(0)"
+                      >
+                        {/* <i class="fa-solid fa-right-from-bracket"></i> */}
+                      <i className="nav-icon fa fa-right-from-bracket text-light"></i>
+                      <p>Logout</p>
+                </Link>
                 </li>
               </ul>
             </nav>

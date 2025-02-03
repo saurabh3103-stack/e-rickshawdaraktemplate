@@ -22,8 +22,8 @@ function AppContent() {
   const location = useLocation();
   useEffect(() => {
     const session = localStorage.getItem('session');
-    if (!session && location.pathname !== '/administration/login') {
-      navigate('/administration/login');
+    if (!session && location.pathname !== '/login') {
+      navigate('/login');
     } 
     else if (session) {
       setUserType(localStorage.getItem('user_type')); 

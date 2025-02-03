@@ -24,6 +24,7 @@ const admin = require('./routes/admin');
 const subAdmin = require('./routes/subAdmin');
 const loginUser = require('./routes/loginUser');
 const  QRCode = require("./routes/qrController");
+const checVehicle = require('./routes/checkVehicleRoute');
 // Vehicle Reg
 
 const ownerRoutes = require('./routes/owner');
@@ -55,6 +56,7 @@ app.use('/api/vehicle', vehicleRoutes);
 app.use('/api/vehicle-document', vehicleDocumentRoutes);
 app.use('/api/driver', driverRoutes);
 app.use("/api/qr_code", QRCode);
+app.use("/api/checkVehicle",checVehicle);
 // router.get("/api/get_qr/:uniqueId", getQR);
 
 // Start Android app Routes

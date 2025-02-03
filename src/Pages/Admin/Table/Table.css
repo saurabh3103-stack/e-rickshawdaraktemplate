@@ -1,14 +1,70 @@
 .custom-table .rdt_TableHead {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary-light);
-  }
-  .cPHygs{
-    padding:4px 0px 4px 0px !important;
-  }
-  .cPHygs .w-100 {
-    width: 103% !important;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary-light);
 }
-.bEOvvC{
-  border:1px solid #c1c1c1 !important
+
+.cPHygs{
+  background-color: #343a40 !important;
+  
+}
+
+.sc-epnzzT{
+  background-color: #343a40 !important;
+  color:white !important;
+
+}
+
+.sc-bbQqnZ{
+ 
+  color: white!important;
+
+
+}
+
+.pagination-first-page{
+  color: white!important;
+}
+
+.cPTFZC{
+  color:white !important;
+}
+/* .cPTFZC:disabled{
+  color:white !important;
+} */
+
+
+.pagination-first-page{
+  color:white !important
+}
+
+
+pagination-previous-page{
+  color:white !important
+}
+
+
+.cPTFZC:hover:not(:disabled) {
+  background-color: rgb(248 249 250) !important;
+}
+
+
+.cPTFZC{
+
+background-color: rgb(248 249 250) !important;
+
+}
+
+
+/* .dark-mode{
+background-color: none !important;
+} */
+
+
+.sc-jhZTHU{
+color: rgb(116, 80, 80);
+background-color:white ;
+}
+.bEOvvC option{
+  color: #fff !important;
 }

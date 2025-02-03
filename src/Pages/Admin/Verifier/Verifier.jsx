@@ -8,6 +8,7 @@ import GetTable from '../Table/GetTable';
 import { Navigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import { Toaster, toast } from 'react-hot-toast';
+import ZoneComponent from '../../../Component/ZoneComponent';
 
 const Verifier = () => {
   // State definitions
@@ -138,7 +139,9 @@ const Verifier = () => {
     },
     {
       name: 'Zone Name',
-      selector: (row) => row.zone_id,
+      selector: (row) => (
+        <ZoneComponent zoneId={row.zone_id}/>
+      ),
       sortable: true,
       style: { fontSize: '.9rem' },
     },
@@ -229,8 +232,10 @@ const Verifier = () => {
 
   return (
     <>
-      <div className="dashboard-main-body">
-        <Brandcrump
+<div className="content-wrapper">
+      <div className="content">
+        <div className="container-fluid">
+          <Brandcrump
           pageName="Dashboard"
           title="Verifier"
           url="/dashboard"
@@ -258,7 +263,7 @@ const Verifier = () => {
                   <div class="col-6">
                     <Link
                       to={'/admin/add-verifier'}
-                      class="btn btn-success float-end"
+                      class="btn btn-success" style={{float:'inline-end'}}
                     >
                       Add Verifier
                     </Link>
@@ -366,6 +371,9 @@ const Verifier = () => {
         style: {
           transition: 'transform 0.3s ease-in-out', // Smooth sliding animation
         }}}/>
+        </div>
+        </div>
+
     </>
   );
 };

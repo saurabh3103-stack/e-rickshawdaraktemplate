@@ -99,7 +99,9 @@ const Challan = () => {
   
   return (
     <>
-      <div className="dashboard-main-body">
+<div className="content-wrapper">
+      <div className="content">
+        <div className="container-fluid">
         <Brandcrump
           pageName="Dashboard"
           title="Challan"
@@ -127,6 +129,8 @@ const Challan = () => {
               </div>
             </div>
           </div>
+        </div>
+        </div>
         </div>
       </div>
     </>

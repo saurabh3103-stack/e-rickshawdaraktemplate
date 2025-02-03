@@ -7,199 +7,191 @@ function AdminSidebar() {
   const toggleDropdown = (menuName) => {
     setOpenDropdown((prev) => (prev === menuName ? null : menuName));
   };
+  const handleLogout = () => {
+    localStorage.removeItem('session');
+    localStorage.removeItem('user_type');
+    localStorage.removeItem('user_email');
+    navigate('/login');
+  };
   
   return (
     <>
-      <section className="sidebar">
-        <button type="button" className="sidebar-close-btn">
-          <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
-        </button>
-        <div>
-          <Link to="/admin/dashboard" className="sidebar-logo" style={{fontSize:"1.9rem",fontWeight:"700",lineHeight:"1",alignItems:"center"}}>
-            E-Rickshaw Management
-          </Link>
-        </div>
-        <div className="sidebar-menu-area bg-primary">
-          <ul className="sidebar-menu" id="sidebar-menu">
-            <li>
-              <Link
-                to="admin/dashboard"
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="solar:home-smile-angle-outline"
-                  className="icon text-lg"
-                ></iconify-icon>
-                <span>Dashboard</span>
+          <aside className="main-sidebar sidebar-dark-primary elevation-4">
+              {/* Brand Logo */}
+              <Link to="/admin/dashboard" className="brand-link">
+                <span className="brand-text font-weight-light"> E-Rickshaw Management</span>
               </Link>
-            </li>
-            {/* Vehicle Dropdown */}
-            <li className={`dropdown ${openDropdown === "vehicle" ? "open" : ""}`}>
-              <Link to="javascript:void(0)"
-                onClick={() => toggleDropdown("vehicle")}
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="twemoji:taxi"
-                  className="icon text-lg "
-                ></iconify-icon>
-                <span>Vehicle</span>
-              </Link>
-              <ul
-                className={`sidebar-submenu ${
-                  openDropdown === "vehicle" ? "show" : "hide"
-                }`}
-              >
-                <li>
-                  <Link to="/admin/users">
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                    Vehicle
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/admin/add_user">
-                    <i className="ri-circle-fill circle-icon text-warning-main w-auto"></i>
-                    Add Vehicle
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            {/* Routes */}
-            <li>
-              <Link
-                to="admin/route"
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="bx:bx-map"
-                  className="icon text-lg"
-                ></iconify-icon>
-                <span>Routes</span>
-              </Link>
-            </li>
-            {/* Verifier Dropdown */}
-            <li
-              className={`dropdown ${openDropdown === "verifier" ? "open" : ""}`}
-            >
-              <Link
-              to="javascript:void(0)"
-                onClick={() => toggleDropdown("verifier")}
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="ic:baseline-person"
-                  className="icon text-lg"
-                  ></iconify-icon>
-                <span>Verifier</span>
-              </Link>
-              <ul
-                className={`sidebar-submenu ${
-                  openDropdown === "verifier" ? "show" : "hide"
-                }`}
-              >
-                <li>
-                  <Link to="admin/verifier">
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                    Verifier
-                  </Link>
-                </li>
-                <li>
-                  <Link to="admin/add-verifier">
-                    <i className="ri-circle-fill circle-icon text-warning-main w-auto"></i>
-                    Add Verifier
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li
-              className={`dropdown ${openDropdown === "zone" ? "open" : ""}`}
-            >
-              <Link
-              to="javascript:void(0)"
-                onClick={() => toggleDropdown("zone")}
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="twemoji:round-pushpin"
-                  className="icon text-lg white-icon"
-                ></iconify-icon>
-                <span>Zone</span>
-              </Link>
-              <ul
-                className={`sidebar-submenu ${
-                  openDropdown === "zone" ? "show" : "hide"
-                }`}
-              >
-                <li>
-                  <Link to="/admin/zone">
-                  <i className="ri-circle-fill circle-icon" style={{ fontSize: '24px', color: '#007bff', width: 'auto', height: 'auto' }}></i>
-                  Zone
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/admin/zone-head">
-                  <i className="ri-circle-fill circle-icon" style={{ fontSize: '24px', color: '#007bff', width: 'auto', height: 'auto' }}></i>
-                  Zone Head
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <Link
-                to="admin/challan"
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="twemoji:receipt"
-                  className="icon text-lg"
-                ></iconify-icon>
-                <span>Challan</span>
-              </Link>
-            </li>
-            <li
-              className={`dropdown ${openDropdown === "report" ? "open" : ""}`}
-            >
-              <Link
-              to="javascript:void(0)"
-                onClick={() => toggleDropdown("report")}
-                className="d-flex align-items-center gap-1 "
-              >
-                <iconify-icon
-                  icon="bx:bx-clipboard"
-                  className="icon text-lg"
-                ></iconify-icon>
-                <span>Report</span>
-              </Link>
-              <ul
-                className={`sidebar-submenu ${
-                  openDropdown === "report" ? "show" : "hide"
-                }`}
-              >
-                <li>
-                  <Link to="admin/today-report">
-                    <i className="ri-circle-fill circle-icon text-primary-600 w-auto"></i>
-                    Today
-                  </Link>
-                </li>
-                <li>
-                  <Link to="admin/all-report">
-                    <i className="ri-circle-fill circle-icon text-warning-main w-auto"></i>
-                    All Report
-                  </Link>
-                </li>
-              </ul>
-            </li>
-              <li>
-                <Link to="admin/sub-admin" className="d-flex align-items-center gap-1 ">
-                    <iconify-icon
-                      icon="ic:baseline-person"
-                      className="icon text-lg"></iconify-icon>
-                    <span>Sub Admin</span>
-                  </Link>
-              </li>
-          </ul>
-        </div>
-      </section>
+              {/* Sidebar */}
+              <div className="sidebar">            
+                {/* Sidebar Menu */}
+                <nav className="mt-2">
+                  <ul
+                    className="nav nav-pills nav-sidebar flex-column"
+                    data-widget="treeview"
+                    role="menu"
+                    data-accordion="false"
+                  >
+                    <li className="nav-item">
+                      <Link  to="/admin/dashboard" 
+                        className={`nav-link ${location.pathname === "/admin/dashboard" ? "active" : ""}`}>
+                        <i className="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                          Dashboard
+                        </p>
+                      </Link>
+                    </li>
+                    <li className={`nav-item ${location.pathname.includes("/admin/vehicle") ? "menu-open" : ""}`}>
+                      <a href="#" class="nav-link">
+                        <i className="nav-icon fas fa-user"></i>
+                        <p>
+                          Vehicle
+                          <i className="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+                      <ul className="nav nav-treeview">
+                        <li className="nav-item">
+                          <Link to="/admin/add_user"    
+                          className={`nav-link ${location.pathname === "/admin/add_user" ? "active" : ""}`}
+                          >
+                            <i className="far fa-circle nav-icon"></i>
+                            <p>Add Vehicle</p>
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link to="admin/users"                       
+                          className={`nav-link ${location.pathname === "/admin/expire_vehicle" ? "active" : ""}`}
+                          >
+                            <i className="far fa-circle nav-icon"></i>
+                            <p>Expire Vehicle</p>
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link to="admin/users"                       
+                          className={`nav-link ${location.pathname === "/admin/active_vehicle" ? "active" : ""}`}
+                          >
+                            <i className="far fa-circle nav-icon"></i>
+                            <p>Active Vehicle</p>
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link to="admin/users"                       
+                          className={`nav-link ${location.pathname === "/admin/pending_vehicle" ? "active" : ""}`}
+                          >
+                            <i className="far fa-circle nav-icon"></i>
+                            <p>Pending Vehicle</p>
+                          </Link>
+                        </li>
+                        <li className="nav-item">
+                          <Link to="/admin/users"                       
+                          className={`nav-link ${location.pathname === "/admin/all_vehicle" ? "active" : ""}`}
+                          >
+                            <i className="far fa-circle nav-icon"></i>
+                            <p>All Vehicle</p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="admin/route"                   
+                      className={` nav-link ${location.pathname === "/admin/route" ? "active" : ""}`}>
+                        <i className="nav-icon fa-solid fa-route text-light"></i>
+                        <p>Routes</p>
+                      </Link>
+                    </li>
+                    <li className={`nav-item ${location.pathname.includes("/admin/verifier") ? "menu-open" : ""}`}>
+                      <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                          Verifier
+                          <i class="fas fa-angle-left right"></i>
+                        </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <Link to="admin/verifier"                       
+                          className={`nav-link ${location.pathname === "/admin/verifier" ? "active" : ""}`}
+                          >
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Verifier</p>
+                          </Link>
+                        </li>
+                        <li class="nav-item">
+                          <Link to="admin/add-verifier" 
+                            className={`nav-link ${location.pathname === "/admin/add-verifier" ? "active" : ""}`}>
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Verifier</p>
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/admin/zone"                   
+                      className={`nav-link ${location.pathname === "/admin/zone" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon fa fa-location-dot text-light"></i>
+                        <p>Zone</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/admin/fine-charges"                   
+                      className={`nav-link ${location.pathname === "/admin/fine-charges" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon fa fa-file-invoice-dollar text-light"></i>
+                        <p>Fine & Charges</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/admin/challan"                   
+                      className={`nav-link ${location.pathname === "/admin/challan" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon far fa-file text-light"></i>
+                        <p>Challan</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/admin/all-report"                   
+                      className={`nav-link ${location.pathname === "/admin/all-report" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon far fa-file text-light"></i>
+                        
+                        <p>Report</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="#"                   
+                      className={`nav-link ${location.pathname === "/admin/transaction" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon fa fa-wallet text-light"></i>
+                        <p>Transcation</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/admin/sub-admin"                   
+                      className={`nav-link ${location.pathname === "/admin/sub-admin" ? "active" : ""}`}
+                      >
+                        <i className="nav-icon far fa-user text-light"></i>
+                        <p>Sub Admin</p>
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link
+                          className="nav-link"
+                            onClick={handleLogout}
+                            href="javascript:void(0)"
+                          >
+                          <i className="nav-icon fa fa-right-from-bracket text-light"></i>
+                          <p>Logout</p>
+                    </Link>
+                    </li>
+                  </ul>
+                </nav>
+                {/* /.sidebar-menu */}
+              </div>
+              {/* /.sidebar */}
+          </aside>
+          
+      
+      
     </>
   );
 }

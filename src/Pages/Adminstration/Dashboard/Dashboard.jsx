@@ -75,7 +75,7 @@ function Dashboard() {
                         <tbody>
                           {neworders.map((neworders, index) => (
                             <tr key={index}>
-                              <td><a href="pages/examples/invoice.html">{neworders.id}</a></td>
+                              <td><a href="javascript:void(0)">{neworders.id}</a></td>
                               <td>{neworders.item}</td>
                               <td><span className={`badge ${neworders.badgeClass}`}>{neworders.status}</span></td>
                               <td><div className="sparkbar" data-color="#00a65a" data-height="20">{neworders.popularity}</div></td>
@@ -119,7 +119,7 @@ function Dashboard() {
                         <tbody>
                           {orders.map((order, index) => (
                             <tr key={index}>
-                              <td><a href="pages/examples/invoice.html">{order.id}</a></td>
+                              <td><a href="javascript:void(0)">{order.id}</a></td>
                               <td>{order.item}</td>
                               <td>{order.amount}</td>
                               <td><span className={`badge ${order.badgeClass}`}>{order.status}</span></td>

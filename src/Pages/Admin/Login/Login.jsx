@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 function Login() {
   const [error, setError] = useState('');
@@ -60,30 +60,20 @@ function Login() {
   };
   return (
     <>
-      <section className="auth bg-base d-flex flex-wrap">
-        <div className="auth-left d-lg-block d-none">
-          <div className="d-flex align-items-center flex-column h-100 justify-content-center">
-            <img src={'../Update/images/auth/auth-img.png'} alt="" />
+      <section class="hold-transition login-page">
+        <div  class="login-box">
+          <div class="card card-outline card-primary">
+          <div class="card-header text-center">
+            <Link href="/" class="h2"><b>Admin</b> Login</Link>
           </div>
-        </div>
-        <div className="auth-right py-32 px-24 d-flex flex-column justify-content-center">
+        <div class="card-body">
+        <p class="login-box-msg">Welcome back! please enter your detail
+        </p>
           <div className="max-w-464-px mx-auto w-100">
-            <div>
-              <a href="index.html" className="mb-40 max-w-290-px">
-                <img src="assets/images/logo.png" alt="" />
-              </a>
-              <h4 className="mb-12">Sign In to your Account</h4>
-              <p className="mb-32 text-secondary-light text-lg">
-                Welcome back! Please enter your details.
-              </p>
-            </div>
+          
             <form onSubmit={handleLogin}>
-              <div className="icon-field mb-16">
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-
-                <span className="icon top-50 translate-middle-y">
-                  <iconify-icon icon="mage:email"></iconify-icon>
-                </span>
+              {error && <p style={{ color: 'red' }}>{error}</p>} 
+              <div className="input-group mb-3">
                 <input
                   type="email"
                   value={formData.email}
@@ -93,12 +83,14 @@ function Login() {
                   className="form-control"
                   placeholder="Enter your email"
                 />
+                 <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
               </div>
-              <div className="position-relative mb-20">
-                <div className="icon-field">
-                  <span className="icon top-50 translate-middle-y">
-                    <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
-                  </span>
+                <div  className="input-group mb-3">
+                 
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={formData.password}
@@ -108,12 +100,14 @@ function Login() {
                     className="form-control"
                     placeholder="Enter your password"
                   />
+                <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
                 </div>
-                <span
-                  className="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light"
-                  onClick={togglePasswordVisibility}
-                ></span>
-              </div>
+                
+              
               <div className="">
                 <div className="d-flex justify-content-between gap-2">
                   <div className="form-check style-check d-flex align-items-center">
@@ -135,14 +129,17 @@ function Login() {
                   </a>
                 </div>
               </div>
-
+              <div className="input-group mb-3 mt-3">
               <button
-                type="submit"
-                className="btn btn-primary text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32"
-              >
-                LOGIN
-              </button>
+                  type="submit"
+                  className="btn btn-primary text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32"
+                >
+                  LOGIN
+                </button>
+              </div>
             </form>
+          </div>
+        </div>
           </div>
         </div>
       </section>

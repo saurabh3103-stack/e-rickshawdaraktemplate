@@ -12,8 +12,10 @@ const Zone = () => {
   }, []);
 
   return (
-    <div className="dashboard-main-body">
-      <Brandcrump 
+      <div className="content-wrapper">
+        <div className="content">
+        <div className="container-fluid">
+        <Brandcrump 
         pageName="Dashboard" 
         title="Zone" 
         url="/dashboard" 
@@ -28,6 +30,8 @@ const Zone = () => {
         </>
       )}
       {(userType === 'admin' || userType === 'subadmin') && <ZoneListing />}
+    </div>
+    </div>
     </div>
   );
 };

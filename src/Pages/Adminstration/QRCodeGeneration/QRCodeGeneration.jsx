@@ -33,7 +33,6 @@ const QRCodeGeneration = () => {
                         onChange={(e) => setUniqueId(e.target.value)}
                     />
                     <button onClick={generateQRCode}>Generate QR Code</button>
-
                     {qrUrl && (
                         <div>
                             <h3>Generated QR Code:</h3>

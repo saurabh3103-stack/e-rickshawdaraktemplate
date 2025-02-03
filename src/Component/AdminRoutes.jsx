@@ -23,6 +23,7 @@ import VehicleRegistration from "../Pages/Admin/AddVehicle/VechileRegistration";
 const AdminRoutes = () => {
     return (
         <Routes>
+            <Route path="/" element={<Dashboard/>}/>
             <Route path='/admin' element={<Dashboard />} />
             <Route path='/admin/dashboard' element={<Dashboard />} />
             <Route path='/admin/add_user' element={<Adduser />} />
