@@ -18,6 +18,7 @@ import SubAdmin from "../Pages/Admin/SubAdmin/SubAdmin";
 import PreviewVerifier from "../Pages/Admin/Verifier/PreviewVerifier";
 import UpdateVerifier from "../Pages/Admin/Verifier/UpdateVerifier";
 import VehicleRegistration from "../Pages/Admin/AddVehicle/VechileRegistration";
+import QRCodeGeneration from "../Pages/Adminstration/QRCodeGeneration/QRCodeGeneration";
 
 
 const AdminRoutes = () => {
@@ -44,6 +45,10 @@ const AdminRoutes = () => {
             <Route path='/admin/all-report' element={<AllReport/>}/>
             <Route path="/admin/admin" element={<Admin/>}/>
             <Route path="/admin/sub-admin" element={<SubAdmin/>}/>
+            {/* <QRCodeGeneration */}
+            {/* QR Code Generation */}
+            <Route path="/admin/qr-generation" element={<QRCodeGeneration/>}/>
+
         </Routes>
     );
 }
