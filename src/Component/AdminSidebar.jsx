@@ -166,8 +166,8 @@ function AdminSidebar() {
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <Link to="#"                   
-                      className={`nav-link ${location.pathname === "//admin/qr-generation" ? "active" : ""}`}
+                      <Link to="/admin/qr-generation"                   
+                      className={`nav-link ${location.pathname === "/admin/qr-generation" ? "active" : ""}`}
                       >
                         <i className="nav-icon fa fa-wallet text-light"></i>
                         <p>Generate QR Code</p>
