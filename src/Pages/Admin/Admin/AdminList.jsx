@@ -94,7 +94,7 @@ const AdminList = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3002/api/admin/', {
+      const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/admin/', {
         headers: {
           'x-api-key': 'your_secret_key',
         },

@@ -5,7 +5,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import SuccessPopup from '../../../Component/SuccessPopup';
 
 const AddRoute = () => {
-  const API_URL = 'http://localhost:3002/api/userPath';
+  const API_URL = 'https://backend-wheat-gamma.vercel.app/api/userPath';
   const API_KEY = 'your_secret_key';
   const [error, setError] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -35,7 +35,7 @@ const AddRoute = () => {
       try {
         const adminId = localStorage.getItem('user_id');
         const response = await axios.post(
-          'http://localhost:3002/api/userPath/add_routes',
+          'https://backend-wheat-gamma.vercel.app/api/userPath/add_routes',
           {
             ...formData,
             admin_id: adminId, // Add admin_id to the request

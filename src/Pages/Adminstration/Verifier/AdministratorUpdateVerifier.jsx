@@ -55,7 +55,7 @@ const AdministratorUpdateVerifier = () => {
   useEffect(() => {
     const fetchZones = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/api/zones', {
+        const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/zones', {
           headers: { 'x-api-key': 'your_secret_key' },
         });
         if (response.status === 200) {
@@ -92,7 +92,7 @@ const AdministratorUpdateVerifier = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3002/api/verifier/update/${selectedData._id}`,
+        `https://backend-wheat-gamma.vercel.app/api/verifier/update/${selectedData._id}`,
         updatedData,
         { headers: { 'x-api-key': 'your_secret_key' } }
       );

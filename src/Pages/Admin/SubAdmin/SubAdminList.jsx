@@ -90,7 +90,7 @@ const SubAdminList = () => {
       setLoading(true);
       const userId = localStorage.getItem('user_id');
       const response = await axios.get(
-        `http://localhost:3002/api/sub-admin/by-admin/${userId}`,
+        `https://backend-wheat-gamma.vercel.app/api/sub-admin/by-admin/${userId}`,
         {
           headers: {
             'x-api-key': 'your_secret_key',
@@ -108,7 +108,7 @@ const SubAdminList = () => {
   const toggleStatus = async (subAdminId, newStatus) => {
     try {
       await axios.put(
-        `http://localhost:3002/api/sub-admin/${subAdminId}/status`,
+        `https://backend-wheat-gamma.vercel.app/api/sub-admin/${subAdminId}/status`,
         { status: newStatus },
         { headers: { 'x-api-key': 'your_secret_key' } },
       );
@@ -121,7 +121,7 @@ const SubAdminList = () => {
   const handleView = async (subAdminId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/api/sub-admin/${subAdminId}`,
+        `https://backend-wheat-gamma.vercel.app/api/sub-admin/${subAdminId}`,
         {
           headers: { 'x-api-key': 'your_secret_key' },
         },
@@ -136,7 +136,7 @@ const SubAdminList = () => {
   const handleEdit = async (subAdminId) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/api/sub-admin/${subAdminId}`,
+        `https://backend-wheat-gamma.vercel.app/api/sub-admin/${subAdminId}`,
         {
           headers: { 'x-api-key': 'your_secret_key' },
         },
@@ -153,7 +153,7 @@ const SubAdminList = () => {
     try {
       const { subadmin_name, email, password } = selectedSubAdmin;
       await axios.put(
-        `http://localhost:3002/api/sub-admin/${selectedSubAdmin._id}`,
+        `https://backend-wheat-gamma.vercel.app/api/sub-admin/${selectedSubAdmin._id}`,
         { subadmin_name, email, password },
         { headers: { 'x-api-key': 'your_secret_key' } },
       );

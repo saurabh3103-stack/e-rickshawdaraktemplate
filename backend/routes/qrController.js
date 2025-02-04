@@ -30,7 +30,7 @@ qrCode.post("/generate_qr", async (req, res) => {
         if (existingQR) {
             return res.json({
                 message: "QR Code already exists",
-                qrUrl: `http://localhost:3002/qrcodes/${uniqueId}.png`
+                qrUrl: `https://backend-wheat-gamma.vercel.app/qrcodes/${uniqueId}.png`
             });
         }
 
@@ -49,7 +49,7 @@ qrCode.post("/generate_qr", async (req, res) => {
 
         res.json({
             message: "QR Code generated successfully",
-            qrUrl: `http://localhost:3002/qrcodes/${uniqueId}.png`
+            qrUrl: `https://backend-wheat-gamma.vercel.app/qrcodes/${uniqueId}.png`
         });
     } catch (error) {
         console.error("QR Code Generation Error:", error);
@@ -69,7 +69,7 @@ qrCode.get("/get_qr/:uniqueId", async (req, res) => {
 
         res.json({
             uniqueId: qrData.uniqueId,
-            qrUrl: `http://localhost:3002/qrcodes/${qrData.uniqueId}.png`
+            qrUrl: `https://backend-wheat-gamma.vercel.app/qrcodes/${qrData.uniqueId}.png`
         });
     } catch (error) {
         console.error("Error fetching QR Code:", error);

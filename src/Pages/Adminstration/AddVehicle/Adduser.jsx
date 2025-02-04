@@ -170,7 +170,7 @@ function Adduser() {
       try {
         console.log(formData);
         const response = await axios.post(
-          'http://localhost:3002/api/users/add_user',
+          'https://backend-wheat-gamma.vercel.app/api/users/add_user',
           submissionData,
           config,
         );

@@ -90,7 +90,7 @@ function Adduser() {
 
      
       try {
-        const response = await axios.post('http://localhost:3002/api/users/add_user', submissionData, {
+        const response = await axios.post('https://backend-wheat-gamma.vercel.app/api/users/add_user', submissionData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'x-api-key': 'your_secret_key',

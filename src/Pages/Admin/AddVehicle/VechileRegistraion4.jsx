@@ -71,7 +71,7 @@ const VehicleRegistration4 = () => {
     });
 
     try {
-      const response = await axios.post('http://localhost:3002/api/vehicle-document/create', formDataToSend, {
+      const response = await axios.post('https://backend-wheat-gamma.vercel.app/api/vehicle-document/create', formDataToSend, {
         headers: {
           'x-api-key': 'your_secret_key',
           'Content-Type': 'multipart/form-data',

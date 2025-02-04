@@ -20,7 +20,7 @@ const ZoneListing = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:3002/api/zones/', {
+      const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/zones/', {
         headers: { 'x-api-key': 'your_secret_key' },
       });
       setZones(response.data);
@@ -50,7 +50,7 @@ const ZoneListing = () => {
 
   const handleEditSubmit = async () => {
     try {
-      const response = await axios.put(`http://localhost:3002/api/zones/${editData._id}`, editData, {
+      const response = await axios.put(`https://backend-wheat-gamma.vercel.app/api/zones/${editData._id}`, editData, {
         headers: { 'x-api-key': 'your_secret_key' },
       });
       toast.success('Zone updated successfully!');
@@ -68,7 +68,7 @@ const ZoneListing = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3002/api/zones/${id}`, {
+      const response = await axios.delete(`https://backend-wheat-gamma.vercel.app/api/zones/${id}`, {
         headers: { 'x-api-key': 'your_secret_key' },
       });
       toast.success('Zone deleted successfully!');
@@ -158,7 +158,7 @@ const ZoneListing = () => {
     try {
       const newStatus = currentStatus === "active" ? "inactive" : "active";
       const response = await axios.put(
-        `http://localhost:3002/api/zones/update-status/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/zones/update-status/${id}`,
         { status: newStatus },
         {
           headers: {

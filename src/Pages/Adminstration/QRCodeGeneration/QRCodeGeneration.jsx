@@ -7,7 +7,7 @@ const QRCodeGeneration = () => {
 
     const generateQRCode = async () => {
         try {
-            const response = await axios.post("http://localhost:3002/api/qr_code/generate_qr", { uniqueId });
+            const response = await axios.post("https://backend-wheat-gamma.vercel.app/api/qr_code/generate_qr", { uniqueId });
             setQrUrl(response.data.qrUrl);
         } catch (error) {
             console.error("Error generating QR code:", error);

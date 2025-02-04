@@ -50,7 +50,7 @@ const VechileRegistration3 = ({ ownerId,refId, increment }) => {
     });
 
     try {
-      const response = await axios.post('http://localhost:3002/api/driver/create', formDataToSend, {
+      const response = await axios.post('https://backend-wheat-gamma.vercel.app/api/driver/create', formDataToSend, {
         headers: {
           'x-api-key': 'your_secret_key', // Replace with your actual API key
           'Content-Type': 'multipart/form-data',

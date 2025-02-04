@@ -48,7 +48,7 @@ const AddSubAdmin = () => {
     try {
       // Make an API call to create sub-admin
       const response = await axios.post(
-        'http://localhost:3002/api/sub-admin/create',
+        'https://backend-wheat-gamma.vercel.app/api/sub-admin/create',
         formData,
         {
           headers: {
@@ -88,7 +88,7 @@ const AddSubAdmin = () => {
   useEffect(() => {
     const fetchZones = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/api/zones', {
+        const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/zones', {
           headers: {
             'x-api-key': 'your_secret_key',
           },

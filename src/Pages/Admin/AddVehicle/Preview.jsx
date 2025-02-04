@@ -20,7 +20,7 @@ function Preview() {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3002/api/users/user/${userId}/${status}`,
+          `https://backend-wheat-gamma.vercel.app/api/users/user/${userId}/${status}`,
         );
         setUserData(response.data.user);
         setLoading(false);
@@ -43,7 +43,7 @@ function Preview() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3002/api/users/update_status/${userId}`,
+        `https://backend-wheat-gamma.vercel.app/api/users/update_status/${userId}`,
       );
       setMessage(response.data.message);
       setError('');

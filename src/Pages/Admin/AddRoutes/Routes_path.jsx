@@ -7,7 +7,7 @@ import Brandcrump from '../../../Component/Brandcrump';
 import GetTable from '../Table/GetTable';
 import { Toaster, toast } from 'react-hot-toast';
 
-const API_URL = 'http://localhost:3002/api/userPath';
+const API_URL = 'https://backend-wheat-gamma.vercel.app/api/userPath';
 const API_KEY = 'your_secret_key';
 
 const RoutesPath = () => {

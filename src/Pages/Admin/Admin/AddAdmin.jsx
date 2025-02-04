@@ -37,7 +37,7 @@ const AddAdmin = () => {
     try {
       // Make an API call
       const response = await axios.post(
-        'http://localhost:3002/api/admin/create',
+        'https://backend-wheat-gamma.vercel.app/api/admin/create',
         formData,
         {
           headers: {
@@ -72,7 +72,7 @@ const AddAdmin = () => {
   useEffect(() => {
     const fetchZones = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/api/zones', {
+        const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/zones', {
           headers: {
             'x-api-key': 'your_secret_key',
           },

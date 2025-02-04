@@ -28,7 +28,7 @@ function Login() {
 
     try {
       // Sending POST request to the backend API
-      const response = await fetch('http://localhost:3002/api/admin/login', {
+      const response = await fetch('https://backend-wheat-gamma.vercel.app/api/admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

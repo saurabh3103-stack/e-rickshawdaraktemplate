@@ -6,7 +6,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 function Routes_path() {
 
-  const API_URL = 'http://localhost:3002/api/userPath';
+  const API_URL = 'https://backend-wheat-gamma.vercel.app/api/userPath';
 const API_KEY = 'your_secret_key';
   const columns = [
     {
@@ -91,7 +91,7 @@ const API_KEY = 'your_secret_key';
     try {
       setLoading(true);
       const response = await axios.get(
-        'http://localhost:3002/api/userPath/',
+        'https://backend-wheat-gamma.vercel.app/api/userPath/',
         {
           headers: {
             'x-api-key': 'your_secret_key',

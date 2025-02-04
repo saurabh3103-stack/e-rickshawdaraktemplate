@@ -79,7 +79,7 @@ const TodayReport = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        'http://localhost:3002/api/zonehead',
+        'https://backend-wheat-gamma.vercel.app/api/zonehead',
         {
           headers: {
             'x-api-key': 'your_secret_key',

@@ -30,7 +30,7 @@ const AddZone = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3002/api/zones/add_zone',
+        'https://backend-wheat-gamma.vercel.app/api/zones/add_zone',
         formData,
         {
           headers: {

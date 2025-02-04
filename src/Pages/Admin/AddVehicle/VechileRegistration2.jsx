@@ -37,7 +37,7 @@ const VehicleRegistration2 = ({ ownerId,refId, increment }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = 'http://localhost:3002/api/vehicle/create';
+      const apiUrl = 'https://backend-wheat-gamma.vercel.app/api/vehicle/create';
       const headers = {
         'x-api-key': 'your_secret_key',
         'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ const AddVerifier = () => {
   useEffect(() => {
     const fetchZones = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/api/zones', {
+        const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/zones', {
           headers: {
             'x-api-key': 'your_secret_key',
           },

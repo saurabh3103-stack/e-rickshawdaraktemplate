@@ -27,7 +27,7 @@ const ZoneHeadListing = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3002/api/zonehead", {
+      const response = await axios.get("https://backend-wheat-gamma.vercel.app/api/zonehead", {
         headers: {
           "x-api-key": "your_secret_key", 
         },
@@ -77,7 +77,7 @@ const handleStatus = async (id, currentStatus) => {
 
     // Make the API call with the new status
     const response = await axios.put(
-      `http://localhost:3002/api/zonehead/status/${id}`,
+      `https://backend-wheat-gamma.vercel.app/api/zonehead/status/${id}`,
       { status: newStatus }, // Send the new status in the request body
       {
         headers: {
@@ -222,7 +222,7 @@ const closeDeleteModal = () => {
 const handleDelete = async () => {
   try {
     const response = await axios.delete(
-      `http://localhost:3002/api/zonehead/delete/${selectedRowID}`,
+      `https://backend-wheat-gamma.vercel.app/api/zonehead/delete/${selectedRowID}`,
       {
         headers: {
           "x-api-key": "your_secret_key",
@@ -246,7 +246,7 @@ const handleDelete = async () => {
 const handleSubmit = async () => {
   try {
     const response = await axios.put(
-      `http://localhost:3002/api/zonehead/update/${zoneHeadID}`,
+      `https://backend-wheat-gamma.vercel.app/api/zonehead/update/${zoneHeadID}`,
       {
         name: formData.name,
         dob: formData.dob,

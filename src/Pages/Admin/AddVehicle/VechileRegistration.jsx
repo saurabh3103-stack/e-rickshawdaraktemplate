@@ -43,7 +43,7 @@ const VehicleRegistration = () => {
   const [referenceId,setreferenceId]=useState(null);
   const handleSubmit = async () => {
     try {
-      const apiUrl = 'http://localhost:3002/api/owner/create';
+      const apiUrl = 'https://backend-wheat-gamma.vercel.app/api/owner/create';
       const headers = {
         'x-api-key': 'your_secret_key', // Replace with your actual API key
       };

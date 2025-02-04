@@ -27,7 +27,7 @@ function Login() {
     const { email, password } = formData;
     try {
       const response = await fetch(
-        'http://localhost:3002/api/sub-admin/login',
+        'https://backend-wheat-gamma.vercel.app/api/sub-admin/login',
         {
           method: 'POST',
           headers: {

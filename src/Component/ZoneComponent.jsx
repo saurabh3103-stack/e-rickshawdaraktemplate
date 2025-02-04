@@ -17,7 +17,7 @@ function ZoneComponent({ zoneId }) {
 
   async function fetchZoneName(zoneId) {
     try {
-      const response = await fetch(`http://localhost:3002/api/zones/${zoneId}`, {
+      const response = await fetch(`https://backend-wheat-gamma.vercel.app/api/zones/${zoneId}`, {
         method: "GET",
         headers: {
           "x-api-key": "your_secret_key",

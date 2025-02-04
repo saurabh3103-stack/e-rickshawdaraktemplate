@@ -34,7 +34,7 @@ const PreviewVerifier = () => {
     console.log('Form Data:', data); // Log the form data
     try {
       const response = await axios.post(
-        'http://localhost:3002/api/verifier/register', // Your API endpoint
+        'https://backend-wheat-gamma.vercel.app/api/verifier/register', // Your API endpoint
         data,
         {
           headers: {

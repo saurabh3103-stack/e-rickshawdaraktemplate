@@ -19,7 +19,7 @@ function RouteNameComponent({ routeId }) {
     }, [routeId]);
     async function fetchRouteDetails(routeId) {
         try {
-            const response = await fetch(`http://localhost:3002/api/userPath/${routeId}`, {
+            const response = await fetch(`https://backend-wheat-gamma.vercel.app/api/userPath/${routeId}`, {
                 method: 'GET',
                 headers: {
                     'x-api-key': 'your_secret_key',

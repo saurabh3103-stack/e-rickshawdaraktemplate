@@ -30,7 +30,7 @@ function Users() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3002/api/users/', {
+      const response = await axios.get('https://backend-wheat-gamma.vercel.app/api/users/', {
         headers: {
           'x-api-key': 'your_secret_key', // Replace with your actual API key
         },
@@ -49,7 +49,7 @@ function Users() {
   }, []);
   const handleShow = (id) => {
     axios
-      .get(`http://localhost:3002/api/users/${id}`, {
+      .get(`https://backend-wheat-gamma.vercel.app/api/users/${id}`, {
         headers: {
           'x-api-key': 'your_secret_key', // Replace with your actual API key
         },
@@ -69,7 +69,7 @@ function Users() {
     try {
       // Make an API call to update status for the given user ID
       const response = await axios.put(
-        `http://localhost:3002/api/users/inactive/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/users/inactive/${id}`,
         {
           status: 0, // Update status to 0
         },
@@ -88,7 +88,7 @@ function Users() {
     try {
       // Make an API call to update status for the given user ID
       const response = await axios.put(
-        `http://localhost:3002/api/users/active/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/users/active/${id}`,
         {
           status: 1, // Update status to 0
         },
@@ -227,7 +227,7 @@ function Users() {
     try {
       const newStatus = currentStatus === "active" ? "inactive" : "active";
       const response = await axios.put(
-        `http://localhost:3002/api/users/update-status/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/users/update-status/${id}`,
         { status: newStatus },
         {
           headers: {
@@ -248,7 +248,7 @@ function Users() {
     const fetchRoute = async () => {
       try {
         const response = await axios.get(
-          'http://localhost:3002/api/userPath/',
+          'https://backend-wheat-gamma.vercel.app/api/userPath/',
           {
             headers: {
               'x-api-key': 'your_secret_key', // Replace with your actual API key
@@ -292,7 +292,7 @@ function Users() {
           'x-api-key': 'your_secret_key',
         };
         let reqOptions = {
-          url: `http://localhost:3002/api/userPath/${routeId}`,
+          url: `https://backend-wheat-gamma.vercel.app/api/userPath/${routeId}`,
           method: 'GET',
           headers: headersList,
         };
@@ -322,7 +322,7 @@ function Users() {
     try {
       // Make an API call to update status for the given user ID
       const response = await axios.put(
-        `http://localhost:3002/api/users/assign_route/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/users/assign_route/${id}`,
         formData,
       );
       if (response.status === 200) {
@@ -336,7 +336,7 @@ function Users() {
   };
   // const findData = (id) => {
 
-  // axios.get(`http://localhost:3002/api/userPath/${id}`, {
+  // axios.get(`https://backend-wheat-gamma.vercel.app/api/userPath/${id}`, {
   // headers: {
   //   'x-api-key': 'your_secret_key'
   // }

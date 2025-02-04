@@ -22,7 +22,7 @@ const Verifier = () => {
       setLoading(true);
       const adminId = localStorage.getItem('user_id');
       const response = await axios.get(
-        `http://localhost:3002/api/verifier`,
+        `https://backend-wheat-gamma.vercel.app/api/verifier`,
         {
           headers: {
             'x-api-key': 'your_secret_key',
@@ -75,7 +75,7 @@ const Verifier = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:3002/api/verifier/delete/${selectedRowID}`,
+        `https://backend-wheat-gamma.vercel.app/api/verifier/delete/${selectedRowID}`,
         {
           headers: {
             'x-api-key': 'your_secret_key',
@@ -105,7 +105,7 @@ const Verifier = () => {
 
       // Make the API call with the new status
       const response = await axios.put(
-        `http://localhost:3002/api/verifier/update-status/${id}`,
+        `https://backend-wheat-gamma.vercel.app/api/verifier/update-status/${id}`,
         { status: newStatus }, // Send the new status in the request body
         {
           headers: {
